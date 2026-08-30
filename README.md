@@ -17,6 +17,13 @@ Independent from the LibreChat deployment's own configuration repository — see
 (no event pipeline or data warehouse in this build) — see
 [ADR-002](docs/adr/ADR-002-direct-mongo-reads.md).
 
+## Documentation
+
+| | English | Português |
+|---|---|---|
+| **User manual** — every screen, walked through | [MANUAL.md](docs/MANUAL.md) | [MANUAL.pt-BR.md](docs/MANUAL.pt-BR.md) |
+| **Technical manual** — architecture, config, API, deploy | [TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md) | [TECHNICAL_MANUAL.pt-BR.md](docs/TECHNICAL_MANUAL.pt-BR.md) |
+
 ## Structure
 
 ```
