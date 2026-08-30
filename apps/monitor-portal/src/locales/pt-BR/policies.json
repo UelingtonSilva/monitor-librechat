@@ -1,0 +1,17 @@
+{
+  "title": "Políticas",
+  "subtitle": "Catálogo versionado em policies/*.yaml no repositório",
+  "phaseNotice": "O catálogo completo do blueprint está cadastrado, mas apenas as políticas de detecção <strong>determinística</strong> estão efetivamente rodando. As demais dependem do Classification Engine (Fase 2) ou de um Guardian síncrono (Fase 3), e estão listadas aqui para rastreabilidade — não produzem detecção hoje.",
+  "statCatalogPolicies": "Policies no catálogo",
+  "statActive": "Ativas (determinísticas)",
+  "statPendingPhase": "Aguardando fase futura",
+  "activeCardTitle": "Ativas — rodando em shadow ({{count}})",
+  "pendingCardTitle": "Cadastradas, aguardando fase futura ({{count}})",
+  "colId": "ID",
+  "colName": "Nome",
+  "colDomain": "Domínio",
+  "colSeverity": "Severidade",
+  "colMode": "Modo",
+  "colDetection": "Detecção",
+  "colNote": "Observação"
+}

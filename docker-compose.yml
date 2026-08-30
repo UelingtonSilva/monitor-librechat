@@ -1,0 +1,33 @@
+# Example compose file for running the Monitor alongside LibreChat on the same host,
+# on LibreChat's own Docker network (see docs/adr/ADR-003-runs-on-the-vm.md for why).
+# LibreChat's database typically does not publish a host port, so an external service
+# (a managed container platform, say) could only reach it by exposing that port on the
+# network — the opposite of a "no new public ports" convention. Reading over the shared
+# internal network instead means the Monitor needs no new port on the host: it binds to
+# 127.0.0.1, reachable only through a tunnel, the same as any other internal admin tool.
+#
+# Replace the image reference below with your own registry, and `librechat_default` with
+# the actual network name your LibreChat compose project created (Compose derives it from
+# the project directory name unless overridden).
+services:
+  monitor:
+    image: your-region-docker.pkg.dev/your-gcp-project/monitor-librechat/monitor:${MONITOR_TAG:-v0.3.0}
+    container_name: monitor-librechat
+    restart: unless-stopped
+    environment:
+      - PORT=4000
+      - MONGO_URI=${MONITOR_MONGO_URI}
+      - MONGO_DB=LibreChat
+      - GOOGLE_CLOUD_PROJECT=${MONITOR_GCP_PROJECT:-}
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - COOKIE_SECURE=${COOKIE_SECURE:-true}
+    ports:
+      - "127.0.0.1:3100:4000"
+    networks:
+      - librechat_default
+
+networks:
+  librechat_default:
+    external: true

@@ -1,0 +1,21 @@
+{
+  "title": "Use Cases",
+  "subtitle": "Purpose and use-case category distribution",
+  "phaseNoticeIntro": "The classification of ",
+  "phaseNoticePurposeLabel": "purpose",
+  "phaseNoticeMiddle": " (professional / personal / undefined) and ",
+  "phaseNoticeCategoryLabel": "use-case category",
+  "phaseNoticeExplanation": " depends on the Classification Engine, planned for Phase 2. Classifying this requires analyzing conversation content with a model — a decision that requires prior approval from Security, Governance, and the DPO, and has not been implemented.",
+  "phaseNoticeFollowUp": "In the meantime, the available proxy for \"use case\" is the corporate Agent used, shown below — it indicates the domain of the query without reading the content.",
+  "agentTableTitle": "Usage by corporate Agent (use-case proxy)",
+  "agentTableEmpty": "No Agent usage recorded for this period.",
+  "colAgent": "Agent",
+  "colUses": "Uses",
+  "colShare": "Share",
+  "noShareValue": "—",
+  "volumeTitle": "Overall volume",
+  "colConversations": "Conversations",
+  "colPrompts": "Prompts",
+  "colInputTokens": "Input tokens",
+  "colOutputTokens": "Output tokens"
+}

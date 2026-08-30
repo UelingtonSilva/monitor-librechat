@@ -1,0 +1,11 @@
+id: COST-001
+version: 1
+name: Consumption above the expected baseline
+domain: cost
+severity: medium
+detection: threshold/trend
+mode: alert
+implemented: false
+note: "Per-role cost threshold not yet calibrated — see the Costs dashboard for the raw figures."
+owner: governance
+review_cycle_days: 90

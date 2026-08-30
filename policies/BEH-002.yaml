@@ -1,0 +1,11 @@
+id: BEH-002
+version: 1
+name: Harassment or direct threat
+domain: behavior
+severity: high
+detection: classifier
+mode: shadow
+implemented: false
+note: "Requires a semantic classifier — planned for a later phase. Must never trigger an automatic disciplinary decision (ADR-008)."
+owner: governance
+review_cycle_days: 90

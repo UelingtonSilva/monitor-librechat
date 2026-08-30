@@ -1,0 +1,11 @@
+id: BEH-001
+version: 1
+name: Content unsuitable for a corporate environment
+domain: behavior
+severity: medium
+detection: classifier
+mode: shadow
+implemented: false
+note: "Requires a semantic behaviour classifier — planned for a later phase."
+owner: governance
+review_cycle_days: 90

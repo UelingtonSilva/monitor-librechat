@@ -1,0 +1,11 @@
+id: GOV-003
+version: 1
+name: MCP integration outside the role's allowlist
+domain: governance
+severity: high
+detection: allowlist
+mode: shadow
+implemented: false
+note: "Requires correlating MCP log entries with the user's role — planned for a later phase."
+owner: governance
+review_cycle_days: 90

@@ -1,0 +1,11 @@
+id: USE-003
+version: 1
+name: Recurring personal use
+domain: usage
+severity: low
+detection: trend
+mode: shadow
+implemented: false
+note: "Depends on USE-002 being classified — planned for a later phase."
+owner: governance
+review_cycle_days: 90

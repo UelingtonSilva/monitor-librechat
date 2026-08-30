@@ -1,0 +1,194 @@
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/500.css";
+@import "@fontsource/montserrat/600.css";
+@import "@fontsource/montserrat/700.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DIMEP Design System — tokens do Manual da Marca (Verde #006B2D, Laranja #F09506).
+ * Formato HSL "H S% L%" (sem hsl()) para compor com hsl(var(--x)) no Tailwind. */
+:root {
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+
+  --primary: 152 100% 21%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 36 91% 48%;
+  --accent-foreground: 0 0% 100%;
+
+  --background: 210 20% 98%;
+  --foreground: 215 28% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 28% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 28% 17%;
+
+  --secondary: 210 18% 95%;
+  --secondary-foreground: 215 28% 17%;
+  --muted: 210 18% 95%;
+  --muted-foreground: 215 16% 47%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 153 100% 37%;
+  --success-foreground: 0 0% 100%;
+  --warning: 36 91% 48%;
+  --warning-foreground: 0 0% 100%;
+  --info: 152 100% 21%;
+  --info-foreground: 0 0% 100%;
+
+  --border: 214 20% 90%;
+  --input: 214 20% 90%;
+  --ring: 152 100% 21%;
+  --radius: 0.5rem;
+
+  --sidebar-background: 152 100% 14%;
+  --sidebar-foreground: 150 20% 92%;
+  --sidebar-primary: 36 91% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 152 80% 19%;
+  --sidebar-accent-foreground: 150 20% 98%;
+  --sidebar-border: 152 70% 17%;
+  --sidebar-ring: 36 91% 48%;
+  --sidebar-muted: 152 40% 38%;
+
+  --chart-1: 152 100% 21%;
+  --chart-2: 36 91% 48%;
+  --chart-3: 153 100% 37%;
+  --chart-4: 90 87% 67%;
+  --chart-5: 296 53% 30%;
+}
+
+.dark {
+  --primary: 150 20% 92%;
+  --primary-foreground: 152 62% 18%;
+  --accent: 22 89% 54%;
+  --accent-foreground: 0 0% 100%;
+  --background: 215 28% 10%;
+  --foreground: 210 20% 92%;
+  --card: 215 28% 13%;
+  --card-foreground: 210 20% 92%;
+  --popover: 215 28% 13%;
+  --popover-foreground: 210 20% 92%;
+  --secondary: 215 20% 18%;
+  --secondary-foreground: 210 20% 92%;
+  --muted: 215 20% 18%;
+  --muted-foreground: 215 16% 60%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 40% 98%;
+  --success: 153 70% 45%;
+  --success-foreground: 0 0% 100%;
+  --warning: 22 89% 54%;
+  --warning-foreground: 0 0% 100%;
+  --info: 150 20% 92%;
+  --info-foreground: 152 62% 18%;
+  --border: 215 20% 20%;
+  --input: 215 20% 20%;
+  --ring: 22 89% 54%;
+  --sidebar-background: 215 28% 8%;
+  --sidebar-foreground: 210 20% 92%;
+  --sidebar-primary: 22 89% 54%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 215 20% 15%;
+  --sidebar-accent-foreground: 210 20% 92%;
+  --sidebar-border: 215 20% 15%;
+  --sidebar-ring: 22 89% 54%;
+  --sidebar-muted: 215 16% 55%;
+  --chart-1: 150 60% 55%;
+  --chart-2: 22 89% 54%;
+  --chart-3: 153 70% 45%;
+  --chart-4: 90 60% 60%;
+  --chart-5: 296 45% 55%;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+}
+
+.kpi-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 0.65rem 0.8rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  transition: box-shadow 0.15s ease;
+}
+.kpi-card:hover {
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.data-row {
+  transition: background-color 0.1s ease;
+}
+.data-row:hover {
+  background: hsl(var(--muted) / 0.5);
+}
+
+.sidebar-item-active {
+  background: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-accent-foreground));
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.status-active {
+  background: hsl(var(--success) / 0.1);
+  color: hsl(var(--success));
+}
+.status-warning {
+  background: hsl(var(--warning) / 0.1);
+  color: hsl(var(--warning));
+}
+.status-error {
+  background: hsl(var(--destructive) / 0.1);
+  color: hsl(var(--destructive));
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

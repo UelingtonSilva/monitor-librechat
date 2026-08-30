@@ -1,0 +1,52 @@
+{
+  "title": "Settings",
+  "subtitle": "Monitor parameters and access control",
+  "phaseNotice": {
+    "before": "The Monitor ",
+    "bold": "does not yet have its own authentication",
+    "after": ": in this phase, access is controlled at the infrastructure layer (Cloud Run with no public access + IAP tunnel), as with LibreChat's admin panel. The RBAC by profile described below is the target design and will arrive together with corporate authentication in phase P2 — do not rely on this screen as effective access control today."
+  },
+  "rbac": {
+    "cardTitle": "Expected access profiles (RBAC — P2)",
+    "columnProfile": "Profile",
+    "columnAccess": "Expected access",
+    "roles": {
+      "AI_MANAGER": "Aggregated indicators for their own area; no access to evidence.",
+      "AI_GOVERNANCE": "Policies, alerts, trends, and masked evidence.",
+      "AI_SECURITY": "Alerts, masked evidence, and incident investigation.",
+      "AI_AUDITOR": "Trails, versions, and reports — read-only.",
+      "AI_ADMIN": "Technical configuration, integrations, and operation."
+    }
+  },
+  "config": {
+    "cardTitle": "Configuration parameters",
+    "columnParameter": "Parameter",
+    "columnWhereDefined": "Where it's defined",
+    "rows": {
+      "mongoConnection": {
+        "label": "Connection to LibreChat's Mongo",
+        "afterCode": "— dedicated read-only user, via Secret Manager"
+      },
+      "gcpProject": {
+        "label": "GCP project for Cloud Logging"
+      },
+      "policyCatalog": {
+        "label": "Policy catalog",
+        "afterCode": "in the repository (versioned in Git)"
+      },
+      "modelPricing": {
+        "label": "Price table per model",
+        "afterCode": "— placeholder, pending validation by Finance"
+      },
+      "modelAllowlist": {
+        "label": "Model allowlist per profile",
+        "betweenCodes": "— mirror of",
+        "afterCode": "from LibreChat"
+      },
+      "dataRetention": {
+        "label": "Data retention",
+        "value": "Not applicable: the Monitor does not persist its own data in this phase (reads on demand)"
+      }
+    }
+  }
+}

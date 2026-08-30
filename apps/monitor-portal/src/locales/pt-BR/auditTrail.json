@@ -1,0 +1,22 @@
+{
+  "pageSubtitle": "Acessos ao Monitor e consultas aos dados corporativos via MCP",
+  "mcpQueriesTitle": "Consultas aos MCPs corporativos ({{count}})",
+  "noMcpQueries": "Nenhuma consulta MCP registrada no período.",
+  "mcpTable": {
+    "date": "Data",
+    "service": "Serviço",
+    "user": "Usuário",
+    "action": "Ação",
+    "resource": "Recurso"
+  },
+  "monitorAccessTitle": "Acessos ao Monitor ({{count}})",
+  "noMonitorAccess": "Nenhum acesso registrado nesta instância.",
+  "accessTable": {
+    "date": "Data",
+    "method": "Método",
+    "route": "Rota",
+    "status": "Status",
+    "duration": "Duração"
+  },
+  "durationUnit": "ms"
+}

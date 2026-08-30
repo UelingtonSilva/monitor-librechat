@@ -1,0 +1,27 @@
+{
+  "title": "Adoption",
+  "subtitle": "Period: {{start}} to {{end}}",
+  "stats": {
+    "enabledUsers": "Enabled users",
+    "dau": "DAU",
+    "dauHint": "Active in the last day",
+    "wau": "WAU",
+    "wauHint": "Active in the last 7 days",
+    "mau": "MAU",
+    "mauHint": "Active in the last 30 days",
+    "activationRate": "Activation rate"
+  },
+  "dailyActiveCard": {
+    "title": "Active users per day (30 days)",
+    "chartLabel": "Active users per day"
+  },
+  "byProfileCard": {
+    "title": "Adoption by profile",
+    "columns": {
+      "profile": "Profile",
+      "enabled": "Enabled",
+      "activeInPeriod": "Active in period",
+      "rate": "Rate"
+    }
+  }
+}

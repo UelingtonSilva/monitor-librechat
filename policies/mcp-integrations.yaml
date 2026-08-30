@@ -1,0 +1,15 @@
+# EXAMPLE configuration — this file ships with placeholder values. Replace `visible_to_roles`
+# and `integrations` with your own deployment's actual roles (see db.users.role in your
+# LibreChat instance) and MCP tools before relying on the Authorized Resources screen or the
+# GOV-003 detection.
+#
+# A role not listed in visible_to_roles is treated as NOT allowed to use MCP integrations —
+# that's the safer default or an unlisted role would silently gain access.
+
+visible_to_roles:
+  - ADMIN
+
+integrations:
+  - id: example-mcp
+    name: Example MCP Integration
+    web_search: false

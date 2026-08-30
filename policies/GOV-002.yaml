@@ -1,0 +1,11 @@
+id: GOV-002
+version: 1
+name: Agent outside the role's allowlist
+domain: governance
+severity: medium
+detection: allowlist
+mode: shadow
+implemented: false
+note: "Requires an agent-to-role ACL mapping not yet integrated — planned for a later phase."
+owner: governance
+review_cycle_days: 90

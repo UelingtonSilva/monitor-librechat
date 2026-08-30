@@ -1,0 +1,11 @@
+id: PRIV-002
+version: 1
+name: Personal data in bulk
+domain: privacy
+severity: high
+detection: dlp+volume
+mode: shadow
+implemented: false
+note: "Requires detecting volume/batches of personal records — awaits a classification engine (a later phase)."
+owner: governance
+review_cycle_days: 90

@@ -1,0 +1,45 @@
+{
+  "loading": "Carregando...",
+  "collapse": "Recolher",
+  "logOut": "Sair",
+  "defaultOrgLabel": "Uso corporativo monitorado",
+  "eyebrow": "GOVERNANÇA DE IA",
+  "errorLoading": "Não foi possível carregar os dados: {{message}}",
+  "close": "Fechar",
+  "noDataForPeriod": "Sem dados no período.",
+  "syntheticBanner": "Exibindo dados de exemplo (sintéticos) — sem conexão com o MongoDB do LibreChat.",
+  "severity": {
+    "critical": "Crítico",
+    "high": "Alto",
+    "medium": "Médio",
+    "low": "Baixo",
+    "info": "Informativo"
+  },
+  "nav": {
+    "groupOverview": "Visão geral",
+    "groupGovernance": "Governança",
+    "groupPlatform": "Plataforma",
+    "dashboard": "Dashboard",
+    "adoption": "Adoção",
+    "costs": "Custos",
+    "useCases": "Casos de uso",
+    "maturity": "Maturidade",
+    "security": "Segurança & risco",
+    "alerts": "Alertas / casos",
+    "policies": "Políticas",
+    "resources": "Recursos autorizados",
+    "audit": "Auditoria",
+    "settings": "Configurações",
+    "status": "Status operacional"
+  },
+  "login": {
+    "eyebrow": "LibreChat corporativo",
+    "subtitle": "Painel de adoção, custo, segurança e auditoria.",
+    "user": "Usuário",
+    "password": "Senha",
+    "signingIn": "Entrando...",
+    "signIn": "Entrar",
+    "failed": "Falha ao entrar",
+    "restrictedNotice": "Acesso restrito. Todo acesso a este painel é registrado na trilha de auditoria."
+  }
+}

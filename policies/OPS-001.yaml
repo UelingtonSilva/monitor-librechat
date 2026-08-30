@@ -1,0 +1,11 @@
+id: OPS-001
+version: 1
+name: Inline gate latency above SLO
+domain: ops
+severity: medium
+detection: metric
+mode: alert
+implemented: false
+note: "There is no synchronous inline gate in this build (read-only) — not applicable until that phase ships."
+owner: governance
+review_cycle_days: 90

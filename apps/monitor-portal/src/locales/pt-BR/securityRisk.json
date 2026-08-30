@@ -1,0 +1,27 @@
+{
+  "title": "Segurança & Risco",
+  "subtitle_one": "Modo {{mode}} — {{formattedCount}} mensagem analisada no período",
+  "subtitle_other": "Modo {{mode}} — {{formattedCount}} mensagens analisadas no período",
+  "phaseNotice": {
+    "introBeforeMode": "Operando em",
+    "mode": "SHADOW",
+    "afterModeBeforeBlocked": ": as políticas detectam e registram, mas",
+    "nothingBlocked": "nada é bloqueado",
+    "afterBlocked": "— o Monitor é observacional e não intercepta o chat.",
+    "deterministicOnly": "Somente detecções determinísticas estão ativas (credenciais, chave privada, identificador pessoal, modelo fora da allowlist).",
+    "semanticPending": "Políticas que dependem de classificação semântica aparecem como \"aguardando Fase 2\" na tela de Políticas."
+  },
+  "statCritical": "Críticos",
+  "statHigh": "Altos",
+  "statMedium": "Médios",
+  "statLow": "Baixos",
+  "statInfo": "Informativos",
+  "detectionsCardTitle": "Detecções no período ({{count}})",
+  "noDetectionsMessage": "Nenhuma detecção no período — nenhuma credencial, chave privada, identificador pessoal ou uso de modelo fora da allowlist foi identificado.",
+  "colDate": "Data",
+  "colSeverity": "Severidade",
+  "colPolicy": "Política",
+  "colUser": "Usuário",
+  "colEvidence": "Evidência (mascarada)",
+  "colDecision": "Decisão"
+}

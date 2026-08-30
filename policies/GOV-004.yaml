@@ -1,0 +1,11 @@
+id: GOV-004
+version: 1
+name: Public sharing not permitted
+domain: governance
+severity: high
+detection: permission/event
+mode: shadow
+implemented: false
+note: "Depends on a LibreChat sharing event not captured in this build — planned for a later phase."
+owner: governance
+review_cycle_days: 90

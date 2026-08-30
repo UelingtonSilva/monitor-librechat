@@ -1,0 +1,11 @@
+id: SEC-003
+version: 1
+name: Private key or certificate
+domain: security
+severity: critical
+detection: pattern-detector
+mode: shadow
+implemented: true
+note: "Detects private-key/certificate headers (-----BEGIN ... PRIVATE KEY-----)."
+owner: governance
+review_cycle_days: 90

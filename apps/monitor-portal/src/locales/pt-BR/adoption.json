@@ -1,0 +1,27 @@
+{
+  "title": "Adoção",
+  "subtitle": "Período: {{start}} a {{end}}",
+  "stats": {
+    "enabledUsers": "Usuários habilitados",
+    "dau": "DAU",
+    "dauHint": "Ativos no último dia",
+    "wau": "WAU",
+    "wauHint": "Ativos nos últimos 7 dias",
+    "mau": "MAU",
+    "mauHint": "Ativos nos últimos 30 dias",
+    "activationRate": "Taxa de ativação"
+  },
+  "dailyActiveCard": {
+    "title": "Usuários ativos por dia (30 dias)",
+    "chartLabel": "Usuários ativos por dia"
+  },
+  "byProfileCard": {
+    "title": "Adoção por perfil",
+    "columns": {
+      "profile": "Perfil",
+      "enabled": "Habilitados",
+      "activeInPeriod": "Ativos no período",
+      "rate": "Taxa"
+    }
+  }
+}

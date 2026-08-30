@@ -1,0 +1,11 @@
+id: SEC-002
+version: 1
+name: Explicit password or token
+domain: security
+severity: critical
+detection: regex/contexto
+mode: shadow
+implemented: true
+note: "Detects keywords (password, token, bearer) near a value in the same passage."
+owner: governance
+review_cycle_days: 90

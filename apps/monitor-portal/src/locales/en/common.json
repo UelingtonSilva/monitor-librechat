@@ -1,0 +1,45 @@
+{
+  "loading": "Loading...",
+  "collapse": "Collapse",
+  "logOut": "Log out",
+  "defaultOrgLabel": "Monitored corporate AI usage",
+  "eyebrow": "AI GOVERNANCE",
+  "errorLoading": "Could not load data: {{message}}",
+  "close": "Close",
+  "noDataForPeriod": "No data for this period.",
+  "syntheticBanner": "Showing example (synthetic) data — no connection to the LibreChat MongoDB.",
+  "severity": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "info": "Info"
+  },
+  "nav": {
+    "groupOverview": "Overview",
+    "groupGovernance": "Governance",
+    "groupPlatform": "Platform",
+    "dashboard": "Dashboard",
+    "adoption": "Adoption",
+    "costs": "Costs",
+    "useCases": "Use Cases",
+    "maturity": "Maturity",
+    "security": "Security & Risk",
+    "alerts": "Alerts / Cases",
+    "policies": "Policies",
+    "resources": "Authorized Resources",
+    "audit": "Audit Trail",
+    "settings": "Settings",
+    "status": "Operational Status"
+  },
+  "login": {
+    "eyebrow": "Corporate LibreChat",
+    "subtitle": "Adoption, cost, security, and audit dashboard.",
+    "user": "User",
+    "password": "Password",
+    "signingIn": "Signing in...",
+    "signIn": "Sign in",
+    "failed": "Failed to sign in",
+    "restrictedNotice": "Restricted access. Every access to this panel is recorded in the audit trail."
+  }
+}

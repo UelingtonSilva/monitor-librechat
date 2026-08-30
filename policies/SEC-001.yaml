@@ -1,0 +1,11 @@
+id: SEC-001
+version: 1
+name: Credential or API key exposure
+domain: security
+severity: critical
+detection: regex/secret-detector
+mode: shadow
+implemented: true
+note: "Detects API key patterns (OpenAI sk-, AWS AKIA, GitHub ghp_, Google AIza) in message text."
+owner: governance
+review_cycle_days: 90

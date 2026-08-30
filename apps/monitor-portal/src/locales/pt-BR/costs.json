@@ -1,0 +1,47 @@
+{
+  "title": "Custos",
+  "subtitle": "Período: {{start}} a {{end}}",
+  "aggregateNotice": {
+    "intro1": "Custo apurado em",
+    "intro2": "pela coleção",
+    "intro3": "do LibreChat — não é mais estimativa por tabela de preço interna.",
+    "coveragePrefix": "A abrangência desse pipeline vai de",
+    "coverageTo": "até",
+    "recordsCount_one": "{{count}} registro",
+    "recordsCount_other": "{{count}} registros",
+    "coverageSuffix": ", menor que a janela de 30 dias consultada — o total abaixo cobre apenas esse intervalo.",
+    "verifiedSuffix": "do valor tem preço marcado como verificado na origem; o restante usa preço estimado pelo próprio pipeline.",
+    "monitorDisclaimer": "O Monitor apenas lê essa tabela: quem a mantém e com que frequência ela roda ainda precisa ser confirmado antes de tratar o número como oficial."
+  },
+  "estimateNotice": {
+    "prefix": "Os valores são",
+    "emphasis": "estimativas",
+    "middle": "calculadas a partir da contagem de tokens multiplicada por uma tabela de preço interna",
+    "suffix": "pendente de validação por Financeiro/Governança."
+  },
+  "stats": {
+    "costLabel": "Custo ({{currency}})",
+    "topProfileLabel": "Perfil de maior custo",
+    "verifiedPriceLabel": "Preço verificado",
+    "unverifiedHint": "{{amount}} não verificado",
+    "totalTokensLabel": "Tokens totais"
+  },
+  "dailyCostTitle": "Custo por dia (30 dias)",
+  "dailyCostSeriesLabel": "Custo por dia",
+  "byProfileTitle": "Custo por perfil",
+  "byModelTitle": "Custo por modelo",
+  "byAreaTitle": "Custo por área",
+  "table": {
+    "profile": "Perfil",
+    "model": "Modelo",
+    "area": "Área",
+    "tokens": "Tokens",
+    "cost": "Custo",
+    "estimatedCost": "Custo estimado"
+  },
+  "areaNote": {
+    "prefix": "Dimensão vinda direto do",
+    "middle": "e",
+    "suffix": "são usuários ainda sem área/centro de custo atribuído na origem — não é um erro do Monitor."
+  }
+}

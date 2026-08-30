@@ -1,0 +1,17 @@
+{
+  "title": "Policies",
+  "subtitle": "Versioned catalog at policies/*.yaml in the repository",
+  "phaseNotice": "The full blueprint catalog is registered, but only <strong>deterministic</strong> detection policies are actually running. The rest depend on the Classification Engine (Phase 2) or a synchronous Guardian (Phase 3), and are listed here for traceability — they don't produce detections today.",
+  "statCatalogPolicies": "Policies in the catalog",
+  "statActive": "Active (deterministic)",
+  "statPendingPhase": "Awaiting future phase",
+  "activeCardTitle": "Active — running in shadow ({{count}})",
+  "pendingCardTitle": "Registered, awaiting future phase ({{count}})",
+  "colId": "ID",
+  "colName": "Name",
+  "colDomain": "Domain",
+  "colSeverity": "Severity",
+  "colMode": "Mode",
+  "colDetection": "Detection",
+  "colNote": "Note"
+}

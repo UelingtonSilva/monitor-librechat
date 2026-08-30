@@ -1,0 +1,11 @@
+id: PRIV-001
+version: 1
+name: National ID or personal identifier
+domain: privacy
+severity: medium
+detection: dlp
+mode: shadow
+implemented: true
+note: "Detects a national-ID numeric pattern (000.000.000-00 or 00000000000)."
+owner: governance
+review_cycle_days: 90

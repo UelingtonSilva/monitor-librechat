@@ -1,0 +1,11 @@
+id: GOV-001
+version: 1
+name: Model outside the role's allowlist
+domain: governance
+severity: high
+detection: allowlist
+mode: shadow
+implemented: true
+note: "Compares the model used in transactions against the per-role model allowlist (Authorized Resources section). The blueprint suggests enforcement, but the Monitor is observational: it detects after the fact and does not block usage. Enforcement would require a synchronous inline gate (a later phase)."
+owner: governance
+review_cycle_days: 90

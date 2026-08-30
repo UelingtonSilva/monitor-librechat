@@ -1,0 +1,11 @@
+id: USE-002
+version: 1
+name: Occasional personal use
+domain: usage
+severity: low
+detection: classifier
+mode: log
+implemented: false
+note: "Same as USE-001 — planned for a later phase."
+owner: governance
+review_cycle_days: 90

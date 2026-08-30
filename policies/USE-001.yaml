@@ -1,0 +1,11 @@
+id: USE-001
+version: 1
+name: Professional use
+domain: usage
+severity: info
+detection: classifier
+mode: log
+implemented: false
+note: "Classifying professional vs. personal intent requires a classification engine — planned for a later phase."
+owner: governance
+review_cycle_days: 90

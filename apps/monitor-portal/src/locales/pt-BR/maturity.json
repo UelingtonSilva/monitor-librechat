@@ -1,0 +1,75 @@
+{
+  "subtitle": "AI Maturity Index — critérios e níveis (Fase 2)",
+  "notice": {
+    "prefix": "O cálculo do índice de maturidade ",
+    "strong": "não está implementado",
+    "rest": ". Três das sete dimensões (qualidade de prompts, reutilização, contribuição) exigem análise do conteúdo das conversas — o que depende do Classification Engine e de aprovação prévia de Segurança, Governança e DPO. Preferimos deixar a tela transparente sobre isso a exibir um número que não teria como ser explicado nem defendido.",
+    "available": "As quatro dimensões marcadas como disponíveis já podem ser medidas com os dados atuais (metadados de uso, Agents, MCP e detecções de segurança) quando a fase for aprovada."
+  },
+  "dimensionsCard": {
+    "title": "Dimensões e pesos propostos",
+    "columns": {
+      "dimension": "Dimensão",
+      "weight": "Peso",
+      "evidence": "Evidência",
+      "dataAvailableToday": "Dado disponível hoje"
+    },
+    "availableYes": "sim",
+    "availableNo": "não — requer Fase 2"
+  },
+  "dimensions": {
+    "usage": {
+      "name": "Regularidade de uso",
+      "evidence": "Uso consistente e não apenas esporádico."
+    },
+    "promptQuality": {
+      "name": "Qualidade/estrutura de prompts",
+      "evidence": "Contexto, objetivo, formato, restrições."
+    },
+    "agents": {
+      "name": "Uso de Agents corporativos",
+      "evidence": "Adoção de recursos padronizados."
+    },
+    "tools": {
+      "name": "Uso de ferramentas/MCP autorizados",
+      "evidence": "Uso de ferramentas com governança."
+    },
+    "reuse": {
+      "name": "Reutilização/automação",
+      "evidence": "Templates, fluxos e ativos reutilizáveis."
+    },
+    "contribution": {
+      "name": "Contribuição/multiplicação",
+      "evidence": "Compartilhamento de práticas e ativos."
+    },
+    "security": { "name": "Boas práticas e segurança", "evidence": "Uso compatível com políticas." }
+  },
+  "levelsCard": {
+    "title": "Níveis de maturidade (N0–N5)",
+    "columns": {
+      "level": "Nível",
+      "name": "Nome",
+      "description": "Descrição"
+    }
+  },
+  "levels": {
+    "n0": { "name": "Não utiliza", "description": "Sem evidência relevante de uso no período." },
+    "n1": {
+      "name": "Explorador",
+      "description": "Solicitações simples, pouco contexto e baixo reaproveitamento."
+    },
+    "n2": { "name": "Usuário", "description": "Uso frequente com contexto e resultados úteis." },
+    "n3": {
+      "name": "Avançado",
+      "description": "Prompts estruturados, escolha adequada de models/Agents."
+    },
+    "n4": {
+      "name": "Especialista",
+      "description": "Integra IA a processos e usa ferramentas/automação autorizadas."
+    },
+    "n5": {
+      "name": "Multiplicador",
+      "description": "Cria padrões, Agents, templates e dissemina boas práticas."
+    }
+  }
+}

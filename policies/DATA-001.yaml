@@ -1,0 +1,11 @@
+id: DATA-001
+version: 1
+name: Classified confidential content
+domain: data
+severity: high
+detection: marker+classifier
+mode: shadow
+implemented: false
+note: "Requires a semantic classifier and document sensitivity tagging — planned for a later phase."
+owner: governance
+review_cycle_days: 90

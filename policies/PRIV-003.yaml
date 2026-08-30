@@ -1,0 +1,11 @@
+id: PRIV-003
+version: 1
+name: Sensitive personal data
+domain: privacy
+severity: high
+detection: dlp+classifier
+mode: shadow
+implemented: false
+note: "Requires a semantic classifier for sensitive categories (health, religion, etc.) — planned for a later phase."
+owner: governance
+review_cycle_days: 90

@@ -1,0 +1,31 @@
+{
+  "subtitle": "Allowlist of models, Agents and MCPs by profile",
+  "liveNoticeBeforeLive": "The allowlist is read ",
+  "liveNoticeLive": "live",
+  "liveNoticeBeforeConfigs": " from ",
+  "liveNoticeAfterConfigs": " in LibreChat (",
+  "liveNoticeAfterOverrides": "), which is the same source used by chat — there is no manual mirror to go stale. The GOV-001 policy compares actual usage against this list, and only raises an alert for profiles with ",
+  "liveNoticeAfterEnforce": " turned on.",
+  "mongoUnavailableNotice": "User count unavailable (\"—\"): no connection to the LibreChat Mongo. The allowlist below is still valid — it comes from configuration, not from the database.",
+  "modelsCardTitle": "Models and MCP by profile",
+  "columns": {
+    "profile": "Profile",
+    "users": "Users",
+    "allowedModels": "Allowed models",
+    "enforce": "Enforce",
+    "mcp": "MCP"
+  },
+  "allModels": "all",
+  "noRestrictionConfigured": "no restriction configured",
+  "yes": "Yes",
+  "no": "No",
+  "agentsCardTitle": "Corporate Agents ({{count}})",
+  "noAgentsReturned": "No Agents returned — no connection to the LibreChat Mongo.",
+  "mcpIntegrationsTitle": "MCP Integrations",
+  "mcpColumns": {
+    "name": "MCP",
+    "webSearch": "Web search"
+  },
+  "webSearchEnabled": "Enabled",
+  "webSearchDisabled": "Disabled"
+}

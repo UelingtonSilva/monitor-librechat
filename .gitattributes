@@ -1,0 +1,13 @@
+# Default to LF for everything, checked out as LF regardless of OS. A previous incident
+# shipped a shell script with CRLF line endings to the deploy VM, which broke its shebang
+# (`/usr/bin/env: 'bash\r'`) — this makes that class of bug impossible to reintroduce.
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+*.ico binary

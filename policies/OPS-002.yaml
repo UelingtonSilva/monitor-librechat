@@ -1,0 +1,11 @@
+id: OPS-002
+version: 1
+name: Event publishing failure
+domain: ops
+severity: high
+detection: metric/dlq
+mode: alert
+implemented: false
+note: "There is no event pipeline in this build (ADR-002) — not applicable."
+owner: governance
+review_cycle_days: 90

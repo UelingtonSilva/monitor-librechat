@@ -1,0 +1,20 @@
+# Example Cloud Build config for a split API/portal deploy. Replace _IMAGE and
+# _API_BASE_URL with your own registry and API URL. Most deployments can instead use the
+# single combined Dockerfile at the repo root (see README) and skip this file entirely.
+substitutions:
+  _IMAGE: "your-region-docker.pkg.dev/your-gcp-project/monitor-librechat/monitor-portal:latest"
+  _API_BASE_URL: "https://your-monitor-api.example.com/api/v1"
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - apps/monitor-portal/Dockerfile
+      - --build-arg
+      - VITE_API_BASE_URL=${_API_BASE_URL}
+      - -t
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}

@@ -1,0 +1,21 @@
+{
+  "title": "Casos de Uso",
+  "subtitle": "Distribuição de finalidade e categoria de uso",
+  "phaseNoticeIntro": "A classificação de ",
+  "phaseNoticePurposeLabel": "finalidade",
+  "phaseNoticeMiddle": " (profissional / pessoal / indefinido) e de ",
+  "phaseNoticeCategoryLabel": "categoria de caso de uso",
+  "phaseNoticeExplanation": " depende do Classification Engine, previsto para a Fase 2. Classificar isso exige analisar o conteúdo das conversas com um modelo — decisão que precisa de aprovação prévia de Segurança, Governança e DPO, e não foi implementada.",
+  "phaseNoticeFollowUp": "Enquanto isso, a proxy disponível para \"caso de uso\" é o Agent corporativo utilizado, exibido abaixo — ele indica o domínio da consulta sem ler o conteúdo.",
+  "agentTableTitle": "Uso por Agent corporativo (proxy de caso de uso)",
+  "agentTableEmpty": "Nenhum uso de Agent registrado no período.",
+  "colAgent": "Agent",
+  "colUses": "Usos",
+  "colShare": "Participação",
+  "noShareValue": "—",
+  "volumeTitle": "Volume geral",
+  "colConversations": "Conversas",
+  "colPrompts": "Prompts",
+  "colInputTokens": "Tokens de input",
+  "colOutputTokens": "Tokens de output"
+}

@@ -1,0 +1,31 @@
+{
+  "subtitle": "Allowlist de models, Agents e MCPs por profile",
+  "liveNoticeBeforeLive": "A allowlist é lida ",
+  "liveNoticeLive": "ao vivo",
+  "liveNoticeBeforeConfigs": " de ",
+  "liveNoticeAfterConfigs": " no LibreChat (",
+  "liveNoticeAfterOverrides": "), que é a mesma fonte usada pelo chat — não há espelho manual para ficar desatualizado. A política GOV-001 compara o uso real contra esta lista, e só gera alerta para profiles com ",
+  "liveNoticeAfterEnforce": " ligado.",
+  "mongoUnavailableNotice": "Contagem de usuários indisponível (\"—\"): sem conexão com o Mongo do LibreChat. A allowlist abaixo continua válida — ela vem da configuração, não do banco.",
+  "modelsCardTitle": "Modelos e MCP por profile",
+  "columns": {
+    "profile": "Profile",
+    "users": "Usuários",
+    "allowedModels": "Modelos permitidos",
+    "enforce": "Enforce",
+    "mcp": "MCP"
+  },
+  "allModels": "todos",
+  "noRestrictionConfigured": "sem restrição configurada",
+  "yes": "Sim",
+  "no": "Não",
+  "agentsCardTitle": "Agents corporativos ({{count}})",
+  "noAgentsReturned": "Nenhum Agent retornado — sem conexão com o Mongo do LibreChat.",
+  "mcpIntegrationsTitle": "Integrações MCP",
+  "mcpColumns": {
+    "name": "MCP",
+    "webSearch": "Pesquisa na web"
+  },
+  "webSearchEnabled": "Ligada",
+  "webSearchDisabled": "Desligada"
+}

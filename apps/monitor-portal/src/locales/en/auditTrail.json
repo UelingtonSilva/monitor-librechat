@@ -1,0 +1,22 @@
+{
+  "pageSubtitle": "Access to the Monitor and queries to corporate data via MCP",
+  "mcpQueriesTitle": "Corporate MCP queries ({{count}})",
+  "noMcpQueries": "No MCP queries recorded for this period.",
+  "mcpTable": {
+    "date": "Date",
+    "service": "Service",
+    "user": "User",
+    "action": "Action",
+    "resource": "Resource"
+  },
+  "monitorAccessTitle": "Monitor access ({{count}})",
+  "noMonitorAccess": "No access recorded on this instance.",
+  "accessTable": {
+    "date": "Date",
+    "method": "Method",
+    "route": "Route",
+    "status": "Status",
+    "duration": "Duration"
+  },
+  "durationUnit": "ms"
+}

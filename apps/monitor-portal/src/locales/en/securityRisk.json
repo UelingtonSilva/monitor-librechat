@@ -1,0 +1,27 @@
+{
+  "title": "Security & Risk",
+  "subtitle_one": "Mode {{mode}} — {{formattedCount}} message analyzed in the period",
+  "subtitle_other": "Mode {{mode}} — {{formattedCount}} messages analyzed in the period",
+  "phaseNotice": {
+    "introBeforeMode": "Operating in",
+    "mode": "SHADOW",
+    "afterModeBeforeBlocked": ": policies detect and log, but",
+    "nothingBlocked": "nothing is blocked",
+    "afterBlocked": "— the Monitor is observational and does not intercept the chat.",
+    "deterministicOnly": "Only deterministic detections are active (credentials, private key, national ID, model outside the allowlist).",
+    "semanticPending": "Policies that depend on semantic classification appear as \"awaiting Phase 2\" on the Policies screen."
+  },
+  "statCritical": "Critical",
+  "statHigh": "High",
+  "statMedium": "Medium",
+  "statLow": "Low",
+  "statInfo": "Informational",
+  "detectionsCardTitle": "Detections in the period ({{count}})",
+  "noDetectionsMessage": "No detections in the period — no credential, private key, national ID, or model usage outside the allowlist was identified.",
+  "colDate": "Date",
+  "colSeverity": "Severity",
+  "colPolicy": "Policy",
+  "colUser": "User",
+  "colEvidence": "Evidence (masked)",
+  "colDecision": "Decision"
+}

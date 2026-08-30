@@ -1,0 +1,11 @@
+id: OPS-003
+version: 1
+name: Classifier unavailable
+domain: ops
+severity: medium
+detection: health
+mode: fail-open
+implemented: false
+note: "There is no classification engine in this build — not applicable."
+owner: governance
+review_cycle_days: 90

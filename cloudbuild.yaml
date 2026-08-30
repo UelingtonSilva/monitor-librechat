@@ -1,0 +1,15 @@
+# Example Cloud Build config. Replace _REGION and _PROJECT with your own, or point
+# _IMAGE at any other registry — nothing else in this project depends on GCP specifically.
+substitutions:
+  _TAG: "v0.2.0"
+  _REGION: "your-region"
+  _PROJECT: "your-gcp-project"
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${_PROJECT}/monitor-librechat/monitor:${_TAG}
+      - .
+images:
+  - ${_REGION}-docker.pkg.dev/${_PROJECT}/monitor-librechat/monitor:${_TAG}

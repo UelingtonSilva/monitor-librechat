@@ -1,0 +1,52 @@
+{
+  "title": "Configurações",
+  "subtitle": "Parâmetros do Monitor e controle de acesso",
+  "phaseNotice": {
+    "before": "O Monitor ",
+    "bold": "ainda não tem autenticação própria",
+    "after": ": nesta fase o acesso é controlado na camada de infraestrutura (Cloud Run sem acesso público + túnel IAP), como no admin-panel do LibreChat. O RBAC por profile descrito abaixo é o desenho-alvo e entra junto com a autenticação corporativa na fase P2 — não confie nesta tela como controle de acesso efetivo hoje."
+  },
+  "rbac": {
+    "cardTitle": "Perfis de acesso previstos (RBAC — P2)",
+    "columnProfile": "Profile",
+    "columnAccess": "Acesso previsto",
+    "roles": {
+      "AI_MANAGER": "Indicadores agregados da própria área; sem acesso a evidência.",
+      "AI_GOVERNANCE": "Policies, alertas, tendências e evidência mascarada.",
+      "AI_SECURITY": "Alertas, evidência mascarada e investigação de incidentes.",
+      "AI_AUDITOR": "Trilhas, versões e relatórios — somente leitura.",
+      "AI_ADMIN": "Configuração técnica, integrações e operação."
+    }
+  },
+  "config": {
+    "cardTitle": "Parâmetros de configuração",
+    "columnParameter": "Parâmetro",
+    "columnWhereDefined": "Onde é definido",
+    "rows": {
+      "mongoConnection": {
+        "label": "Conexão com o Mongo do LibreChat",
+        "afterCode": "— user read-only dedicado, via Secret Manager"
+      },
+      "gcpProject": {
+        "label": "Projeto GCP para Cloud Logging"
+      },
+      "policyCatalog": {
+        "label": "Catálogo de políticas",
+        "afterCode": "no repositório (versionado em Git)"
+      },
+      "modelPricing": {
+        "label": "Tabela de preço por model",
+        "afterCode": "— placeholder, pendente de validação por Financeiro"
+      },
+      "modelAllowlist": {
+        "label": "Allowlist de models por profile",
+        "betweenCodes": "— espelho de",
+        "afterCode": "do LibreChat"
+      },
+      "dataRetention": {
+        "label": "Retenção de dados",
+        "value": "Não aplicável: o Monitor não persiste dados próprios nesta fase (lê sob demanda)"
+      }
+    }
+  }
+}

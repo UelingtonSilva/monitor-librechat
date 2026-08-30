@@ -1,0 +1,66 @@
+{
+  "subtitle": "AI Maturity Index — criteria and levels (Phase 2)",
+  "notice": {
+    "prefix": "The maturity index calculation ",
+    "strong": "is not implemented",
+    "rest": ". Three of the seven dimensions (prompt quality, reuse, contribution) require analysis of conversation content — which depends on the Classification Engine and prior approval from Security, Governance, and DPO. We prefer to keep the screen transparent about this rather than display a number that could not be explained or defended.",
+    "available": "The four dimensions marked as available can already be measured with current data (usage metadata, Agents, MCP, and security detections) once the phase is approved."
+  },
+  "dimensionsCard": {
+    "title": "Proposed dimensions and weights",
+    "columns": {
+      "dimension": "Dimension",
+      "weight": "Weight",
+      "evidence": "Evidence",
+      "dataAvailableToday": "Data available today"
+    },
+    "availableYes": "yes",
+    "availableNo": "no — requires Phase 2"
+  },
+  "dimensions": {
+    "usage": { "name": "Usage regularity", "evidence": "Consistent use, not just occasional." },
+    "promptQuality": {
+      "name": "Prompt quality/structure",
+      "evidence": "Context, objective, format, constraints."
+    },
+    "agents": {
+      "name": "Use of corporate Agents",
+      "evidence": "Adoption of standardized resources."
+    },
+    "tools": { "name": "Use of authorized tools/MCP", "evidence": "Use of tools with governance." },
+    "reuse": { "name": "Reuse/automation", "evidence": "Reusable templates, flows, and assets." },
+    "contribution": {
+      "name": "Contribution/multiplication",
+      "evidence": "Sharing of practices and assets."
+    },
+    "security": {
+      "name": "Good practices and security",
+      "evidence": "Use compliant with policies."
+    }
+  },
+  "levelsCard": {
+    "title": "Maturity levels (N0–N5)",
+    "columns": {
+      "level": "Level",
+      "name": "Name",
+      "description": "Description"
+    }
+  },
+  "levels": {
+    "n0": { "name": "Not used", "description": "No relevant evidence of use in the period." },
+    "n1": { "name": "Explorer", "description": "Simple requests, little context, and low reuse." },
+    "n2": { "name": "User", "description": "Frequent use with context and useful results." },
+    "n3": {
+      "name": "Advanced",
+      "description": "Structured prompts, appropriate choice of models/Agents."
+    },
+    "n4": {
+      "name": "Specialist",
+      "description": "Integrates AI into processes and uses authorized tools/automation."
+    },
+    "n5": {
+      "name": "Multiplier",
+      "description": "Creates standards, Agents, templates, and disseminates good practices."
+    }
+  }
+}
