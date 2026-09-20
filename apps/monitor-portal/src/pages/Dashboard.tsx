@@ -46,9 +46,15 @@ const CHART_COLORS = ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"];
 const POLL_MS = 60_000;
 
 const STATE_CFG = {
-  normal: { color: "success", lamp: 2, label: "Normal" },
-  warning: { color: "warning", lamp: 1, label: "Warning" },
-  critical: { color: "destructive", lamp: 0, label: "Critical" },
+  normal: { color: "success", lamp: 2 },
+  warning: { color: "warning", lamp: 1 },
+  critical: { color: "destructive", lamp: 0 },
+} as const;
+
+const STATE_LABEL_KEY = {
+  normal: "dashboard:conductStateNormal",
+  warning: "dashboard:conductStateWarning",
+  critical: "dashboard:conductStateCritical",
 } as const;
 
 function formatTokens(v: number): string {
@@ -387,7 +393,7 @@ export function Dashboard() {
             </span>
           </div>
           <p className="text-xs text-muted-foreground">
-            {stateCfg.label}
+            {t(STATE_LABEL_KEY[cd.state])}
             {cd.causes.length > 0
               ? ` · ${t("dashboard:causesCount", { count: cd.causes.length })}`
               : ""}

@@ -72,17 +72,18 @@ Três decisões estruturais estão registradas como ADR, não só como comentár
 
 ### Backend — apps/monitor-api
 
-| Componente              | Versão  | Papel                                             |
-| ----------------------- | ------- | ------------------------------------------------- |
-| Node.js                 | `20`    | Runtime (ver `.nvmrc`)                            |
-| Fastify                 | `^4.28` | Servidor HTTP                                     |
-| TypeScript              | `^5.5`  | Linguagem, modo `strict`                          |
-| mongodb (driver nativo) | `^6.9`  | Acesso ao MongoDB — sem ORM                       |
-| @fastify/cookie         | `^9.4`  | Cookie de sessão assinado                         |
-| @fastify/static         | `^7.0`  | Serve o Portal buildado                           |
-| @google-cloud/logging   | `^11.2` | Auditoria MCP (opcional)                          |
-| yaml                    | `^2.5`  | Parser do catálogo de políticas e integrações MCP |
-| Vitest                  | `^2.1`  | Testes                                            |
+| Componente              | Versão  | Papel                                                                                                                      |
+| ----------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Node.js                 | `20`    | Runtime (ver `.nvmrc`)                                                                                                     |
+| Fastify                 | `^4.28` | Servidor HTTP                                                                                                              |
+| TypeScript              | `^5.5`  | Linguagem, modo `strict`                                                                                                   |
+| mongodb (driver nativo) | `^6.9`  | Acesso ao MongoDB — sem ORM                                                                                                |
+| @fastify/cookie         | `^9.4`  | Cookie de sessão assinado                                                                                                  |
+| @fastify/static         | `^7.0`  | Serve o Portal buildado                                                                                                    |
+| @google-cloud/logging   | `^11.2` | Auditoria MCP (opcional)                                                                                                   |
+| dotenv                  | `^16.4` | Carrega o `.env` em dev local — vira no-op quando a variável já está definida, que é como Docker/Cloud Run recebem a deles |
+| yaml                    | `^2.5`  | Parser do catálogo de políticas e integrações MCP                                                                          |
+| Vitest                  | `^2.1`  | Testes                                                                                                                     |
 
 ### Frontend — apps/monitor-portal
 

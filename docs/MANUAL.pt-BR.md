@@ -54,7 +54,7 @@ O acesso é feito com um usuário e senha únicos, definidos por quem administra
 (não é o mesmo login do LibreChat). Não existem perfis diferentes de acesso nesta
 versão — quem entra, vê tudo.
 
-![Tela de login](screenshots/login.png)
+![Tela de login](screenshots/pt-BR/login.png)
 _A tela de login. O aviso no rodapé existe porque todo acesso a este painel é
 registrado na trilha de auditoria (seção 13)._
 
@@ -93,7 +93,7 @@ Não é preciso recarregar a página manualmente.
 A primeira tela depois de entrar. Reúne os números mais importantes em um só lugar,
 para uma leitura rápida do estado geral do uso de IA na organização.
 
-![Dashboard Executivo](screenshots/dashboard.png)
+![Dashboard Executivo](screenshots/pt-BR/dashboard.png)
 _Dashboard Executivo com dados de exemplo. Os cards do topo, o gráfico de tokens por
 hora, o radar por papel e a tabela de números por papel._
 
@@ -111,7 +111,7 @@ hora, o radar por papel e a tabela de números por papel._
 
 Dois cards abrem uma janela com mais detalhe ao serem clicados:
 
-![Diálogo de detalhe de usuários](screenshots/dialog-usuarios.png)
+![Diálogo de detalhe de usuários](screenshots/pt-BR/dialog-usuarios.png)
 _Clicar no card "Usuários" abre a lista completa, ordenada pelo acesso mais recente —
 com status (ativo/inativo), papel, tokens consumidos e data do último acesso._
 
@@ -138,7 +138,7 @@ não usou a ferramenta no período ou acessou modelos fora da allowlist configur
 Quantas pessoas de fato usam a ferramenta, e com que frequência — separado do volume de
 uso (que fica no Dashboard e em Custos).
 
-![Tela de Adoção](screenshots/adoption.png)
+![Tela de Adoção](screenshots/pt-BR/adoption.png)
 _DAU, WAU, MAU, taxa de ativação, uma série de usuários ativos por dia e adoção por
 papel._
 
@@ -154,7 +154,7 @@ papel._
 
 Quanto o uso de IA custou no período, aberto por papel, modelo e área.
 
-![Tela de Custos](screenshots/costs.png)
+![Tela de Custos](screenshots/pt-BR/costs.png)
 _Custo total, papel de maior custo, percentual de preço verificado, custo por dia, por
 papel, por modelo e por área._
 
@@ -180,7 +180,7 @@ momento — não é preciso adivinhar.
 Para que a IA está sendo usada — hoje, medido de forma indireta, através do Agent
 corporativo utilizado.
 
-![Tela de Casos de Uso](screenshots/use-cases.png)
+![Tela de Casos de Uso](screenshots/pt-BR/use-cases.png)
 _Uso por Agent corporativo (como proxy de "caso de uso") e volume geral de conversas,
 prompts e tokens._
 
@@ -196,7 +196,7 @@ Um modelo de referência para avaliar a maturidade da adoção de IA na organiza
 hoje, documental: os critérios e níveis estão definidos, mas o cálculo automático de
 pontuação ainda não está implementado.
 
-![Tela de Maturidade](screenshots/maturity.png)
+![Tela de Maturidade](screenshots/pt-BR/maturity.png)
 _As sete dimensões propostas (com peso e evidência esperada) e os seis níveis de
 maturidade, de "Não utilizado" a "Multiplicador"._
 
@@ -208,7 +208,7 @@ critérios estejam realmente medidos seria pior do que não mostrar nada.
 O detector de segurança do Monitor, rodando em **modo sombra**: detecta e registra, mas
 nunca bloqueia nada.
 
-![Tela de Segurança & Risco](screenshots/security.png)
+![Tela de Segurança & Risco](screenshots/pt-BR/security.png)
 _Contagem de detecções por severidade e a lista de detecções do período, com evidência
 sempre mascarada._
 
@@ -237,7 +237,7 @@ uma fase futura.
 As mesmas detecções da tela de Segurança, apresentadas como um painel de alertas
 filtrável — feito para investigação caso a caso.
 
-![Tela de Alertas / Casos](screenshots/alerts.png)
+![Tela de Alertas / Casos](screenshots/pt-BR/alerts.png)
 _Filtros por severidade e por política, e a tabela de alertas com status._
 
 Esta tela é somente leitura nesta versão — um fluxo completo de triagem (assumir um
@@ -250,7 +250,7 @@ painel, pelo processo de segurança já existente na organização.
 O catálogo completo de políticas de governança de IA planejadas, versionado como
 arquivo — não como registro de banco de dados.
 
-![Tela de Políticas](screenshots/policies.png)
+![Tela de Políticas](screenshots/pt-BR/policies.png)
 _Catálogo de 20 políticas: as que de fato rodam (modo sombra) e as que aguardam uma
 fase futura._
 
@@ -263,7 +263,7 @@ fase futura._
 Quais modelos, Agents e integrações cada papel pode usar — a referência com a qual a
 política "modelo fora da allowlist" compara.
 
-![Tela de Recursos Autorizados](screenshots/resources.png)
+![Tela de Recursos Autorizados](screenshots/pt-BR/resources.png)
 _Allowlist de modelos por papel (lida ao vivo da configuração do próprio LibreChat),
 Agents corporativos e integrações MCP._
 
@@ -277,7 +277,7 @@ LibreChat.
 Duas trilhas de auditoria distintas, na mesma tela: quem acessou o próprio Monitor e
 quem usou as integrações corporativas via MCP.
 
-![Tela de Auditoria](screenshots/audit.png)
+![Tela de Auditoria](screenshots/pt-BR/audit.png)
 _Consultas MCP corporativas e o histórico de acesso do próprio Monitor — método, rota,
 status e duração de cada chamada._
 
@@ -290,7 +290,7 @@ status e duração de cada chamada._
 Uma referência do que está configurado hoje, e de como o controle de acesso por papel
 vai funcionar quando estiver pronto — por enquanto, documental.
 
-![Tela de Configurações](screenshots/settings.png)
+![Tela de Configurações](screenshots/pt-BR/settings.png)
 _Papéis de acesso planejados (RBAC) e de onde vem cada parâmetro do sistema._
 
 Nesta versão, o Monitor tem um único login compartilhado — sem perfis de acesso
@@ -303,7 +303,7 @@ controle de acesso efetivo hoje.
 A saúde do próprio Monitor: está conectado ao MongoDB? os dados batem com o formato
 esperado? quais integrações opcionais estão ligadas?
 
-![Tela de Status Operacional](screenshots/status.png)
+![Tela de Status Operacional](screenshots/pt-BR/status.png)
 _Status geral, conexão com o MongoDB, metas de disponibilidade (SLOs) e o painel de
 integrações opcionais._
 
