@@ -151,6 +151,16 @@ código. A tabela abaixo é a referência completa.
 > interpola variáveis dentro de valores de `.env`, e um hash com `$` chega truncado ao
 > container.
 
+Gere o `ADMIN_PASSWORD_HASH` com o script incluído — não existe cadastro nem senha
+padrão, então esse é o único jeito de produzir um valor que o Monitor aceita:
+
+```bash
+npm run hash-password -w apps/monitor-api -- "sua-senha-aqui"
+```
+
+O comando imprime só o hash — a senha em si nunca é logada ou repetida na tela. Cole a
+saída em `ADMIN_PASSWORD_HASH` (variável de ambiente, `.env` ou Secret Manager).
+
 ## 5. Recursos técnicos
 
 ### Fallback gracioso de custo

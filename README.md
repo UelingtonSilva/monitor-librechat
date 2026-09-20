@@ -76,11 +76,16 @@ npm install
 
 # monitor-api (port 4000 by default)
 cp apps/monitor-api/.env.template apps/monitor-api/.env
+npm run hash-password -w apps/monitor-api -- "choose-a-password"  # paste the output into ADMIN_PASSWORD_HASH in .env
 npm run dev -w apps/monitor-api
 
 # monitor-portal (port 5173 by default)
 npm run dev -w apps/monitor-portal
 ```
+
+There's no signup screen and no default password: the Portal has a single shared login,
+and without `ADMIN_PASSWORD_HASH` set, login never succeeds — the `hash-password` script
+above is the only way to produce a value it accepts.
 
 Without `MONGO_URI` set, the API still starts normally and every analytics endpoint
 returns clearly-marked example data (`"synthetic": true`), so the portal can be developed

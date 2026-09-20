@@ -150,6 +150,16 @@ code. The table below is the complete reference.
 > interpolates variables inside `.env` values, and a hash containing `$` arrives
 > truncated at the container.
 
+Generate `ADMIN_PASSWORD_HASH` with the bundled script — there's no signup flow and no
+default password, so this is the only way to produce a value the Monitor accepts:
+
+```bash
+npm run hash-password -w apps/monitor-api -- "your-password-here"
+```
+
+The command prints only the hash — the password itself is never logged or echoed back.
+Paste the output into `ADMIN_PASSWORD_HASH` (env var, `.env`, or Secret Manager).
+
 ## 5. Technical features
 
 ### Graceful cost fallback

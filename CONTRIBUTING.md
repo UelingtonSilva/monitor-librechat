@@ -14,6 +14,7 @@ npm install
 
 # API (port 4000 by default)
 cp apps/monitor-api/.env.template apps/monitor-api/.env
+npm run hash-password -w apps/monitor-api -- "choose-a-password"  # paste into ADMIN_PASSWORD_HASH in .env
 npm run dev -w apps/monitor-api
 
 # Portal (port 5173 by default)
