@@ -19,9 +19,9 @@ Independent from the LibreChat deployment's own configuration repository — see
 
 ## Documentation
 
-| | English | Português |
-|---|---|---|
-| **User manual** — every screen, walked through | [MANUAL.md](docs/MANUAL.md) · [PDF](docs/MANUAL.pdf) | [MANUAL.pt-BR.md](docs/MANUAL.pt-BR.md) · [PDF](docs/MANUAL.pt-BR.pdf) |
+|                                                          | English                                                                            | Português                                                                                            |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **User manual** — every screen, walked through           | [MANUAL.md](docs/MANUAL.md) · [PDF](docs/MANUAL.pdf)                               | [MANUAL.pt-BR.md](docs/MANUAL.pt-BR.md) · [PDF](docs/MANUAL.pt-BR.pdf)                               |
 | **Technical manual** — architecture, config, API, deploy | [TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md) · [PDF](docs/TECHNICAL_MANUAL.pdf) | [TECHNICAL_MANUAL.pt-BR.md](docs/TECHNICAL_MANUAL.pt-BR.md) · [PDF](docs/TECHNICAL_MANUAL.pt-BR.pdf) |
 
 ## Structure

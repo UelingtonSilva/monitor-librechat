@@ -72,29 +72,29 @@ Três decisões estruturais estão registradas como ADR, não só como comentár
 
 ### Backend — apps/monitor-api
 
-| Componente | Versão | Papel |
-|---|---|---|
-| Node.js | `20` | Runtime (ver `.nvmrc`) |
-| Fastify | `^4.28` | Servidor HTTP |
-| TypeScript | `^5.5` | Linguagem, modo `strict` |
-| mongodb (driver nativo) | `^6.9` | Acesso ao MongoDB — sem ORM |
-| @fastify/cookie | `^9.4` | Cookie de sessão assinado |
-| @fastify/static | `^7.0` | Serve o Portal buildado |
-| @google-cloud/logging | `^11.2` | Auditoria MCP (opcional) |
-| yaml | `^2.5` | Parser do catálogo de políticas e integrações MCP |
-| Vitest | `^2.1` | Testes |
+| Componente              | Versão  | Papel                                             |
+| ----------------------- | ------- | ------------------------------------------------- |
+| Node.js                 | `20`    | Runtime (ver `.nvmrc`)                            |
+| Fastify                 | `^4.28` | Servidor HTTP                                     |
+| TypeScript              | `^5.5`  | Linguagem, modo `strict`                          |
+| mongodb (driver nativo) | `^6.9`  | Acesso ao MongoDB — sem ORM                       |
+| @fastify/cookie         | `^9.4`  | Cookie de sessão assinado                         |
+| @fastify/static         | `^7.0`  | Serve o Portal buildado                           |
+| @google-cloud/logging   | `^11.2` | Auditoria MCP (opcional)                          |
+| yaml                    | `^2.5`  | Parser do catálogo de políticas e integrações MCP |
+| Vitest                  | `^2.1`  | Testes                                            |
 
 ### Frontend — apps/monitor-portal
 
-| Componente | Versão | Papel |
-|---|---|---|
-| React | `^18.3` | UI |
-| Vite | `^5.4` | Build e dev server |
-| Tailwind CSS | `^3.4` | Estilização utilitária |
-| Recharts | `^3.10` | Gráficos (barras, radar, linha) |
+| Componente              | Versão        | Papel                            |
+| ----------------------- | ------------- | -------------------------------- |
+| React                   | `^18.3`       | UI                               |
+| Vite                    | `^5.4`        | Build e dev server               |
+| Tailwind CSS            | `^3.4`        | Estilização utilitária           |
+| Recharts                | `^3.10`       | Gráficos (barras, radar, linha)  |
 | react-i18next / i18next | `^17` / `^26` | Internacionalização (EN / PT-BR) |
-| react-router-dom | `^6.26` | Roteamento client-side |
-| lucide-react | `^1.31` | Ícones |
+| react-router-dom        | `^6.26`       | Roteamento client-side           |
+| lucide-react            | `^1.31`       | Ícones                           |
 
 ### Ferramental do monorepo
 
@@ -107,14 +107,14 @@ os 3 pacotes (`packages/shared`, `apps/monitor-api`, `apps/monitor-portal`) com 
 O Monitor não define seu próprio schema de dados operacionais — ele lê o schema nativo
 do LibreChat, e só isso, para o núcleo funcionar com qualquer instância.
 
-| Coleção (LibreChat) | Uso pelo Monitor |
-|---|---|
-| `users` | Papel (`role`) de cada usuário — string livre, não uma lista fixa. Adoção, Custos e o Dashboard derivam os papéis existentes dinamicamente a partir daqui. |
-| `transactions` | Consumo de tokens. `tokenType` tem três valores possíveis (`prompt`, `completion`, `credits`) — `credits` é recarga de orçamento, não consumo, e é sempre filtrado. |
-| `conversations` | Volume de conversas e o Agent usado (`agent_id`). |
-| `agents` | Nome dos Agents corporativos configurados. |
-| `configs` | Allowlist de modelos por papel (`overrides.modelSpecs`) — lida ao vivo, nunca espelhada. |
-| `sessions` / `files` | Último acesso e contagem de arquivos gerados. |
+| Coleção (LibreChat)  | Uso pelo Monitor                                                                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `users`              | Papel (`role`) de cada usuário — string livre, não uma lista fixa. Adoção, Custos e o Dashboard derivam os papéis existentes dinamicamente a partir daqui.          |
+| `transactions`       | Consumo de tokens. `tokenType` tem três valores possíveis (`prompt`, `completion`, `credits`) — `credits` é recarga de orçamento, não consumo, e é sempre filtrado. |
+| `conversations`      | Volume de conversas e o Agent usado (`agent_id`).                                                                                                                   |
+| `agents`             | Nome dos Agents corporativos configurados.                                                                                                                          |
+| `configs`            | Allowlist de modelos por papel (`overrides.modelSpecs`) — lida ao vivo, nunca espelhada.                                                                            |
+| `sessions` / `files` | Último acesso e contagem de arquivos gerados.                                                                                                                       |
 
 > Um módulo próprio (`schema-guard.ts`) verifica em tempo real se essas coleções ainda
 > têm os campos que o código espera, e sinaliza qualquer divergência na tela de Status
@@ -132,20 +132,20 @@ LibreChat.
 Toda a configuração é feita por variáveis de ambiente — nenhum valor sensível fica no
 código. A tabela abaixo é a referência completa.
 
-| Variável | Obrigatória | Padrão | Efeito |
-|---|---|---|---|
-| `PORT` | não | `4000` | Porta HTTP da API |
-| `MONGO_URI` | não | — | Sem ela, todos os endpoints retornam dados sintéticos |
-| `MONGO_DB` | não | `LibreChat` | Nome do banco |
-| `ADMIN_USER` | não | `admin` | Usuário de login do painel |
-| `ADMIN_PASSWORD_HASH` | **sim** | — | Hash scrypt (`scrypt:salt:hash`) — sem ele, o login nunca autentica, por design |
-| `SESSION_SECRET` | recomendado | gerado ao acaso | Sem ele, sessões não sobrevivem a um restart do serviço |
-| `COOKIE_SECURE` | não | `true` | Desligar só em desenvolvimento local (http) |
-| `POLICIES_DIR` | não | `../../policies` | Pasta com o catálogo de políticas e `mcp-integrations.yaml` |
-| `PORTAL_DIR` | não | — | Se definida, a API também serve o Portal buildado (arquitetura de container único) |
-| `GOOGLE_CLOUD_PROJECT` | não | — | Necessária para a auditoria de MCP via Cloud Logging |
-| `MCP_AUDIT_SERVICE_NAMES` | não | — | Lista separada por vírgula dos nomes de serviço a auditar (junto com a variável acima) |
-| `COST_COLLECTION_NAME` | não | — | Nome de uma coleção externa de custo já apurado; sem ela, Custos usa estimativa por token |
+| Variável                  | Obrigatória | Padrão           | Efeito                                                                                    |
+| ------------------------- | ----------- | ---------------- | ----------------------------------------------------------------------------------------- |
+| `PORT`                    | não         | `4000`           | Porta HTTP da API                                                                         |
+| `MONGO_URI`               | não         | —                | Sem ela, todos os endpoints retornam dados sintéticos                                     |
+| `MONGO_DB`                | não         | `LibreChat`      | Nome do banco                                                                             |
+| `ADMIN_USER`              | não         | `admin`          | Usuário de login do painel                                                                |
+| `ADMIN_PASSWORD_HASH`     | **sim**     | —                | Hash scrypt (`scrypt:salt:hash`) — sem ele, o login nunca autentica, por design           |
+| `SESSION_SECRET`          | recomendado | gerado ao acaso  | Sem ele, sessões não sobrevivem a um restart do serviço                                   |
+| `COOKIE_SECURE`           | não         | `true`           | Desligar só em desenvolvimento local (http)                                               |
+| `POLICIES_DIR`            | não         | `../../policies` | Pasta com o catálogo de políticas e `mcp-integrations.yaml`                               |
+| `PORTAL_DIR`              | não         | —                | Se definida, a API também serve o Portal buildado (arquitetura de container único)        |
+| `GOOGLE_CLOUD_PROJECT`    | não         | —                | Necessária para a auditoria de MCP via Cloud Logging                                      |
+| `MCP_AUDIT_SERVICE_NAMES` | não         | —                | Lista separada por vírgula dos nomes de serviço a auditar (junto com a variável acima)    |
+| `COST_COLLECTION_NAME`    | não         | —                | Nome de uma coleção externa de custo já apurado; sem ela, Custos usa estimativa por token |
 
 > O hash de senha usa `:` como separador, não `$` — de propósito. O Docker Compose
 > interpola variáveis dentro de valores de `.env`, e um hash com `$` chega truncado ao
@@ -182,9 +182,9 @@ empilhando tentativas lentas em vez de cair rápido para o modo sintético.
 
 Dois pontos de extensão vivem em YAML, versionado em Git, e não exigem recompilar nada:
 
-| Arquivo | Controla |
-|---|---|
-| `policies/*.yaml` | O catálogo de políticas de detecção exibido na tela Políticas |
+| Arquivo                          | Controla                                                                          |
+| -------------------------------- | --------------------------------------------------------------------------------- |
+| `policies/*.yaml`                | O catálogo de políticas de detecção exibido na tela Políticas                     |
 | `policies/mcp-integrations.yaml` | Quais integrações MCP existem e quais papéis podem usá-las (Recursos Autorizados) |
 
 ### Internacionalização
@@ -199,36 +199,36 @@ que EN e PT-BR sempre tenham exatamente o mesmo conjunto de chaves.
 Todos os endpoints (exceto `/health` e `/ready`) ficam sob o prefixo `/api/v1` e exigem
 sessão autenticada.
 
-| Método | Rota | Retorna |
-|---|---|---|
-| POST | `/auth/login` | Autentica e inicia sessão |
-| POST | `/auth/logout` | Encerra a sessão |
-| GET | `/auth/me` | Usuário da sessão atual |
-| GET | `/analytics/adoption` | DAU/WAU/MAU, ativação, adoção por papel |
-| GET | `/analytics/adoption-trend` | Série diária de usuários ativos |
-| GET | `/analytics/usage` | Tokens, prompts, conversas, por modelo e Agent |
-| GET | `/analytics/cost` | Custo total e por papel/modelo/área |
-| GET | `/analytics/cost-trend` | Série diária de custo |
-| GET | `/analytics/profile-usage` | Perfil de uso normalizado por papel (radar do Dashboard) |
-| GET | `/analytics/conduct` | Sinal estatístico de desvio de consumo (z-score) |
-| GET | `/analytics/user-activity` | Lista de usuários com último acesso |
-| GET | `/analytics/security` | Detecções de segurança do período |
-| GET | `/analytics/mcp-audit` | Auditoria de uso das integrações MCP |
-| GET | `/resources` | Allowlist por papel, Agents e integrações MCP |
-| GET | `/policies` | Catálogo completo de políticas |
-| GET | `/audit` | Trilha de acesso ao próprio Monitor |
-| GET | `/status` | Saúde, SLOs, verificação de schema e integrações opcionais |
-| GET | `/health` | Liveness check (sem prefixo, sem autenticação) |
+| Método | Rota                        | Retorna                                                    |
+| ------ | --------------------------- | ---------------------------------------------------------- |
+| POST   | `/auth/login`               | Autentica e inicia sessão                                  |
+| POST   | `/auth/logout`              | Encerra a sessão                                           |
+| GET    | `/auth/me`                  | Usuário da sessão atual                                    |
+| GET    | `/analytics/adoption`       | DAU/WAU/MAU, ativação, adoção por papel                    |
+| GET    | `/analytics/adoption-trend` | Série diária de usuários ativos                            |
+| GET    | `/analytics/usage`          | Tokens, prompts, conversas, por modelo e Agent             |
+| GET    | `/analytics/cost`           | Custo total e por papel/modelo/área                        |
+| GET    | `/analytics/cost-trend`     | Série diária de custo                                      |
+| GET    | `/analytics/profile-usage`  | Perfil de uso normalizado por papel (radar do Dashboard)   |
+| GET    | `/analytics/conduct`        | Sinal estatístico de desvio de consumo (z-score)           |
+| GET    | `/analytics/user-activity`  | Lista de usuários com último acesso                        |
+| GET    | `/analytics/security`       | Detecções de segurança do período                          |
+| GET    | `/analytics/mcp-audit`      | Auditoria de uso das integrações MCP                       |
+| GET    | `/resources`                | Allowlist por papel, Agents e integrações MCP              |
+| GET    | `/policies`                 | Catálogo completo de políticas                             |
+| GET    | `/audit`                    | Trilha de acesso ao próprio Monitor                        |
+| GET    | `/status`                   | Saúde, SLOs, verificação de schema e integrações opcionais |
+| GET    | `/health`                   | Liveness check (sem prefixo, sem autenticação)             |
 
 ## 7. Segurança
 
-| | |
-|---|---|
-| **Autenticação** | Um único usuário compartilhado por instância (sem RBAC nesta versão), senha em hash scrypt, nunca em texto plano. |
-| **Sessão** | Cookie httpOnly assinado por HMAC, expira em 8 horas, `Secure` habilitado por padrão. |
-| **Rate limiting** | Por IP, limita tentativas de login consecutivas antes de recusar novas por alguns minutos. |
-| **CORS** | Desabilitado — a API só serve o Portal na mesma origem, não há chamador cruzado legítimo. |
-| **Acesso ao Mongo** | Usuário dedicado, somente leitura. O Monitor nunca escreve no banco do LibreChat. |
+|                          |                                                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Autenticação**         | Um único usuário compartilhado por instância (sem RBAC nesta versão), senha em hash scrypt, nunca em texto plano.                                                   |
+| **Sessão**               | Cookie httpOnly assinado por HMAC, expira em 8 horas, `Secure` habilitado por padrão.                                                                               |
+| **Rate limiting**        | Por IP, limita tentativas de login consecutivas antes de recusar novas por alguns minutos.                                                                          |
+| **CORS**                 | Desabilitado — a API só serve o Portal na mesma origem, não há chamador cruzado legítimo.                                                                           |
+| **Acesso ao Mongo**      | Usuário dedicado, somente leitura. O Monitor nunca escreve no banco do LibreChat.                                                                                   |
 | **Detecção de conteúdo** | Regex determinístico local — nenhum conteúdo de conversa é enviado a um modelo de IA para essa análise, e a evidência é sempre mascarada antes de aparecer na tela. |
 
 > Confirme que o MongoDB do LibreChat está rodando com autenticação (`--auth`)
@@ -299,14 +299,14 @@ tela funciona.
 O que muda por configuração, sem tocar em código, versus o que é uma decisão de
 arquitetura registrada.
 
-| Ponto de extensão | Como |
-|---|---|
-| Papéis/perfis de usuário | Nenhuma configuração — lidos dinamicamente de `users.role` |
-| Políticas de detecção | Editar `policies/*.yaml` |
-| Integrações MCP e visibilidade por papel | Editar `policies/mcp-integrations.yaml` |
-| Fonte de custo | Variável de ambiente `COST_COLLECTION_NAME` |
-| Auditoria de MCP | Variáveis `GOOGLE_CLOUD_PROJECT` + `MCP_AUDIT_SERVICE_NAMES` |
-| Idioma da interface | Novo arquivo em `locales/<idioma>/` |
+| Ponto de extensão                        | Como                                                         |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| Papéis/perfis de usuário                 | Nenhuma configuração — lidos dinamicamente de `users.role`   |
+| Políticas de detecção                    | Editar `policies/*.yaml`                                     |
+| Integrações MCP e visibilidade por papel | Editar `policies/mcp-integrations.yaml`                      |
+| Fonte de custo                           | Variável de ambiente `COST_COLLECTION_NAME`                  |
+| Auditoria de MCP                         | Variáveis `GOOGLE_CLOUD_PROJECT` + `MCP_AUDIT_SERVICE_NAMES` |
+| Idioma da interface                      | Novo arquivo em `locales/<idioma>/`                          |
 
 Decisões que exigem mudar código — enforcement de políticas, controle de acesso por
 papel dentro do próprio Monitor, um pipeline de eventos — estão deliberadamente fora do

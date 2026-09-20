@@ -99,13 +99,13 @@ hora, o radar por papel e a tabela de números por papel._
 
 ### Os cards
 
-| Card | O que significa |
-|---|---|
-| **Usuários** | Total de usuários habilitados e quantos estiveram ativos no período. Clicável — abre a lista completa de usuários. |
-| **Tokens de entrada / saída / total** | Volume de tokens consumidos (o que foi enviado ao modelo e o que ele respondeu). |
-| **Custo (USD)** | Custo estimado do período, sempre em dólares. Ver a seção Custos para como esse número é calculado. |
-| **Arquivos gerados / Prompts / Conversas** | Volume de uso bruto no período. |
-| **Conduta** | Indicador estatístico (não é uma regra fixa) que compara o consumo mais recente contra a média histórica. Clicável — abre o detalhe das detecções de segurança do período. |
+| Card                                       | O que significa                                                                                                                                                            |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Usuários**                               | Total de usuários habilitados e quantos estiveram ativos no período. Clicável — abre a lista completa de usuários.                                                         |
+| **Tokens de entrada / saída / total**      | Volume de tokens consumidos (o que foi enviado ao modelo e o que ele respondeu).                                                                                           |
+| **Custo (USD)**                            | Custo estimado do período, sempre em dólares. Ver a seção Custos para como esse número é calculado.                                                                        |
+| **Arquivos gerados / Prompts / Conversas** | Volume de uso bruto no período.                                                                                                                                            |
+| **Conduta**                                | Indicador estatístico (não é uma regra fixa) que compara o consumo mais recente contra a média histórica. Clicável — abre o detalhe das detecções de segurança do período. |
 
 ### Cards clicáveis
 
@@ -128,7 +128,7 @@ período selecionado, para o gráfico nunca virar uma parede de barras minúscul
 ### Radar e tabela por papel
 
 O gráfico de radar compara o perfil de uso entre papéis (tokens, prompts, conversas,
-dias ativos, modelos e Agents distintos — tudo normalizado por usuário *ativo*, não
+dias ativos, modelos e Agents distintos — tudo normalizado por usuário _ativo_, não
 pelo total de usuários, para não confundir "papel pequeno" com "papel que usa pouco").
 A tabela ao lado traz os mesmos números em formato de lista, com avisos quando um papel
 não usou a ferramenta no período ou acessou modelos fora da allowlist configurada.
@@ -163,10 +163,10 @@ papel, por modelo e por área._
 Esta é a única tela do Monitor cujo comportamento muda dependendo da configuração do
 ambiente — vale entender os dois modos:
 
-| Modo | Quando aparece | O que significa |
-|---|---|---|
-| **Pipeline verificado** | Quando o ambiente tem sua própria coleção de rateio de custo configurada | Custo real em dólares, com uma flag de "preço verificado" separando o que veio de uma fonte confirmada do que ainda é estimativa dessa mesma fonte. |
-| **Estimativa** | Padrão — sem coleção de custo configurada | Custo calculado a partir da contagem real de tokens multiplicada por uma tabela de preços interna (aproximada, sujeita a revisão). Ainda é dado real — só o valor em dólar é estimado. |
+| Modo                    | Quando aparece                                                           | O que significa                                                                                                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pipeline verificado** | Quando o ambiente tem sua própria coleção de rateio de custo configurada | Custo real em dólares, com uma flag de "preço verificado" separando o que veio de uma fonte confirmada do que ainda é estimativa dessa mesma fonte.                                    |
+| **Estimativa**          | Padrão — sem coleção de custo configurada                                | Custo calculado a partir da contagem real de tokens multiplicada por uma tabela de preços interna (aproximada, sujeita a revisão). Ainda é dado real — só o valor em dólar é estimado. |
 
 A tela sempre avisa, logo abaixo do título, qual dos dois modos está ativo naquele
 momento — não é preciso adivinhar.
@@ -319,11 +319,11 @@ LibreChat, sem configuração além da conexão com o banco. Três recursos, por
 opcionais — vêm desligados por padrão e só se ligam quando alguém os configura
 explicitamente:
 
-| Recurso | Desligado (padrão) | Ligado |
-|---|---|---|
-| **Pipeline de custo** | Custos usa uma estimativa token × preço | Custos usa uma coleção de custo externa, já rateada |
-| **Auditoria de MCP** | A seção MCP da Auditoria mostra dados de exemplo | Lê o histórico real das integrações MCP configuradas |
-| **Catálogo de integrações MCP** | Nenhuma integração cadastrada em Recursos Autorizados | Mostra as integrações e quais papéis podem usá-las |
+| Recurso                         | Desligado (padrão)                                    | Ligado                                               |
+| ------------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
+| **Pipeline de custo**           | Custos usa uma estimativa token × preço               | Custos usa uma coleção de custo externa, já rateada  |
+| **Auditoria de MCP**            | A seção MCP da Auditoria mostra dados de exemplo      | Lê o histórico real das integrações MCP configuradas |
+| **Catálogo de integrações MCP** | Nenhuma integração cadastrada em Recursos Autorizados | Mostra as integrações e quais papéis podem usá-las   |
 
 Nenhum dos três exige alterar código — são arquivos de configuração e variáveis de
 ambiente. Ver o [manual técnico](TECHNICAL_MANUAL.pt-BR.md) para a configuração exata.
@@ -336,8 +336,7 @@ demonstração, sem conexão com o MongoDB do LibreChat. Sem esse aviso, os núm
 reais.
 
 **Por que o custo mudou de forma diferente entre dois acessos?**
-Confira se a tela de Custos está no modo "estimativa" ou "pipeline verificado" (seção
-6) — os dois usam fontes diferentes e não são diretamente comparáveis período a período
+Confira se a tela de Custos está no modo "estimativa" ou "pipeline verificado" (seção 6) — os dois usam fontes diferentes e não são diretamente comparáveis período a período
 se a configuração mudou no meio do caminho.
 
 **Posso usar o Monitor para bloquear um usuário ou um prompt?**

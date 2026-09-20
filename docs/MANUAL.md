@@ -98,13 +98,13 @@ per-role radar, and the numbers-by-role table._
 
 ### The cards
 
-| Card | What it means |
-|---|---|
-| **Users** | Total enabled users and how many were active in the period. Clickable — opens the full user list. |
-| **Input / output / total tokens** | Token volume consumed (what was sent to the model and what it answered). |
-| **Cost (USD)** | Estimated cost for the period, always in dollars. See the Costs section for how this figure is computed. |
-| **Files generated / Prompts / Conversations** | Raw usage volume for the period. |
-| **Conduct** | A statistical indicator (not a fixed rule) comparing the most recent consumption against the historical mean. Clickable — opens the period's security detections in detail. |
+| Card                                          | What it means                                                                                                                                                               |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Users**                                     | Total enabled users and how many were active in the period. Clickable — opens the full user list.                                                                           |
+| **Input / output / total tokens**             | Token volume consumed (what was sent to the model and what it answered).                                                                                                    |
+| **Cost (USD)**                                | Estimated cost for the period, always in dollars. See the Costs section for how this figure is computed.                                                                    |
+| **Files generated / Prompts / Conversations** | Raw usage volume for the period.                                                                                                                                            |
+| **Conduct**                                   | A statistical indicator (not a fixed rule) comparing the most recent consumption against the historical mean. Clickable — opens the period's security detections in detail. |
 
 ### Clickable cards
 
@@ -127,7 +127,7 @@ the chart never turns into a wall of tiny bars.
 ### Radar and role table
 
 The radar chart compares usage profile across roles (tokens, prompts, conversations,
-active days, distinct models and Agents — all normalized per *active* user, not total
+active days, distinct models and Agents — all normalized per _active_ user, not total
 users, so a "small role" isn't confused with "a role that uses little"). The table next
 to it shows the same numbers as a list, flagging roles that had no usage in the period or
 accessed models outside their configured allowlist.
@@ -161,10 +161,10 @@ model, and by area._
 This is the only screen whose behavior changes depending on the environment's
 configuration — worth understanding both modes:
 
-| Mode | When it appears | What it means |
-|---|---|---|
-| **Verified pipeline** | When the environment has its own cost-apportioning collection configured | Real cost in dollars, with a "verified price" flag separating what came from a confirmed source from what's still an estimate from that same source. |
-| **Estimate** | Default — no cost collection configured | Cost computed from the real token count multiplied by an internal price table (approximate, subject to review). Still real data — only the dollar figure is estimated. |
+| Mode                  | When it appears                                                          | What it means                                                                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Verified pipeline** | When the environment has its own cost-apportioning collection configured | Real cost in dollars, with a "verified price" flag separating what came from a confirmed source from what's still an estimate from that same source.                   |
+| **Estimate**          | Default — no cost collection configured                                  | Cost computed from the real token count multiplied by an internal price table (approximate, subject to review). Still real data — only the dollar figure is estimated. |
 
 The screen always states, right below the title, which of the two modes is active — no
 guessing required.
@@ -310,11 +310,11 @@ The Monitor was built to work with real data against any LibreChat instance, wit
 configuration beyond the database connection. Three features, however, are optional —
 they ship off by default and only turn on once someone configures them explicitly:
 
-| Feature | Off (default) | On |
-|---|---|---|
-| **Cost pipeline** | Costs uses a token × price estimate | Costs uses an external, already-apportioned cost collection |
-| **MCP audit** | The MCP section of Audit Trail shows example data | Reads the real history of configured MCP integrations |
-| **MCP integrations catalog** | No integration registered in Authorized Resources | Shows the integrations and which roles may use them |
+| Feature                      | Off (default)                                     | On                                                          |
+| ---------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| **Cost pipeline**            | Costs uses a token × price estimate               | Costs uses an external, already-apportioned cost collection |
+| **MCP audit**                | The MCP section of Audit Trail shows example data | Reads the real history of configured MCP integrations       |
+| **MCP integrations catalog** | No integration registered in Authorized Resources | Shows the integrations and which roles may use them         |
 
 None of the three requires touching code — they're config files and environment
 variables. See the [technical manual](TECHNICAL_MANUAL.md) for the exact configuration.
