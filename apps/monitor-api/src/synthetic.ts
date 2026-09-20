@@ -245,6 +245,7 @@ export function syntheticConduct(): ConductStats {
     zScore: 0.6,
     state: "normal",
     reason: "Consumption within the expected band (20h window).",
+    causes: [],
     series,
   };
 }

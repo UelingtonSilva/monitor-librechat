@@ -217,6 +217,39 @@ export interface TokenBucket {
 
 export type ConductState = "normal" | "warning" | "critical";
 
+export type ConductCauseKind = "token-volume-anomaly" | "security-detection";
+
+/**
+ * One signal that actually contributed to the Conduct semaphore, kept as its own entry
+ * regardless of whether it is the one that ended up deciding `state`.
+ *
+ * Before this existed, only the single "winning" signal's text survived into the API
+ * response: a critical-severity detection would silently swallow a simultaneous z-score
+ * anomaly (or vice-versa), so the Portal's Conduct dialog could show "Critical" with no
+ * detections listed and no way to tell why. Every non-normal signal is now recorded here.
+ */
+export interface ConductCause {
+  kind: ConductCauseKind;
+  /** Never "normal" — a cause is only ever recorded when it is not. */
+  severity: Exclude<ConductState, "normal">;
+  summary: string;
+  /** Present only when `kind` is "token-volume-anomaly". */
+  tokenAnomaly?: {
+    zScore: number;
+    bucketTokens: number;
+    meanTokens: number;
+    stdDevTokens: number;
+    windowBuckets: number;
+    /** ISO 8601 start of the bucket that triggered the anomaly. */
+    bucketTimestamp: string;
+  };
+  /** Present only when `kind` is "security-detection". */
+  securityDetection?: {
+    criticalCount: number;
+    highCount: number;
+  };
+}
+
 /**
  * Statistical conduct signal: how far the latest period sits from normal behaviour
  * (moving mean plus/minus standard deviation), not a count of violated rules.
@@ -232,7 +265,10 @@ export interface ConductStats {
   /** null when there is not enough history to compute the band. */
   zScore: number | null;
   state: ConductState;
+  /** Combined summary of every cause below, kept for a compact one-line display. */
   reason: string;
+  /** Every signal considered while computing `state`, so a UI can show all of them. */
+  causes: ConductCause[];
   series: TokenBucket[];
 }
 

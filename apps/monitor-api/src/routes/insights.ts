@@ -2,6 +2,7 @@ import type { FastifyInstance } from "fastify";
 import type {
   ProfileUsageStats,
   ConductStats,
+  ConductCause,
   TokenBucket,
   ConductState,
   UserActivityStats,
@@ -337,43 +338,79 @@ async function loadConduct(from?: Date, to?: Date): Promise<ConductStats> {
   const last = totals[totals.length - 1] ?? 0;
   const window = totals.slice(-1 - ZSCORE_WINDOW, -1);
   let zScore: number | null = null;
+  let meanTokens = 0;
+  let stdDevTokens = 0;
   if (window.length >= 5) {
     const mean = window.reduce((s, v) => s + v, 0) / window.length;
     const variance = window.reduce((s, v) => s + (v - mean) ** 2, 0) / window.length;
     const stdDev = Math.sqrt(variance);
     zScore = stdDev > 0 ? (last - mean) / stdDev : 0;
+    meanTokens = mean;
+    stdDevTokens = stdDev;
   }
 
-  let state: ConductState = "normal";
-  let reason =
-    zScore === null
-      ? "Not enough history (fewer than 5 buckets) to compute the band; still accumulating data."
-      : "Consumption within the expected band (moving mean +/- 2 standard deviations).";
+  // Every signal that actually contributes to the semaphore is recorded as its own cause,
+  // not just whichever one happens to decide `state`. Before this, a critical-severity
+  // detection silently swallowed a simultaneous z-score anomaly (or vice-versa): the API
+  // kept only one "reason" string, so the Portal's Conduct dialog could show "Critical"
+  // with an empty detections list and no way to tell why. Both signals are independent and
+  // both get their own entry here whenever they are not "normal".
+  const causes: ConductCause[] = [];
 
   if (zScore !== null) {
     const az = Math.abs(zScore);
-    if (az >= 3) {
-      state = "critical";
-      reason = `Latest bucket is ${az.toFixed(1)} standard deviations outside the expected band.`;
-    } else if (az >= 2) {
-      state = "warning";
-      reason = `Latest bucket is ${az.toFixed(1)} standard deviations outside the expected band.`;
+    if (az >= 2) {
+      const severity: Exclude<ConductState, "normal"> = az >= 3 ? "critical" : "warning";
+      causes.push({
+        kind: "token-volume-anomaly",
+        severity,
+        summary: `Latest bucket is ${az.toFixed(1)} standard deviations outside the expected band.`,
+        tokenAnomaly: {
+          zScore: Number(zScore.toFixed(2)),
+          bucketTokens: last,
+          meanTokens: Math.round(meanTokens),
+          stdDevTokens: Math.round(stdDevTokens),
+          windowBuckets: window.length,
+          bucketTimestamp: series[series.length - 1]?.timestamp ?? end.toISOString(),
+        },
+      });
     }
   }
 
-  // A critical or high policy detection overrides the statistical signal.
   try {
     const security = await loadSecurity();
-    if (security.bySeverity.critical > 0) {
-      state = "critical";
-      reason = `${security.bySeverity.critical} deteccao(oes) de severidade critica em aberto (ver Seguranca & Risco).`;
-    } else if (security.bySeverity.high > 0 && state === "normal") {
-      state = "warning";
-      reason = `${security.bySeverity.high} deteccao(oes) de severidade alta em aberto (ver Seguranca & Risco).`;
+    if (security.bySeverity.critical > 0 || security.bySeverity.high > 0) {
+      const severity: Exclude<ConductState, "normal"> =
+        security.bySeverity.critical > 0 ? "critical" : "warning";
+      const parts: string[] = [];
+      if (security.bySeverity.critical > 0) parts.push(`${security.bySeverity.critical} critical`);
+      if (security.bySeverity.high > 0) parts.push(`${security.bySeverity.high} high`);
+      causes.push({
+        kind: "security-detection",
+        severity,
+        summary: `${parts.join(" and ")} severity detection(s) open (see Security & Risk).`,
+        securityDetection: {
+          criticalCount: security.bySeverity.critical,
+          highCount: security.bySeverity.high,
+        },
+      });
     }
   } catch {
     // Failing to read security must not take the signal down: it still reflects the z-score.
   }
+
+  const state: ConductState = causes.some((c) => c.severity === "critical")
+    ? "critical"
+    : causes.some((c) => c.severity === "warning")
+      ? "warning"
+      : "normal";
+
+  const reason =
+    causes.length > 0
+      ? causes.map((c) => c.summary).join(" ")
+      : zScore === null
+        ? "Not enough history (fewer than 5 buckets) to compute the band; still accumulating data."
+        : "Consumption within the expected band (moving mean +/- 2 standard deviations).";
 
   return {
     synthetic: false,
@@ -381,6 +418,7 @@ async function loadConduct(from?: Date, to?: Date): Promise<ConductStats> {
     zScore: zScore === null ? null : Number(zScore.toFixed(2)),
     state,
     reason,
+    causes,
     series,
   };
 }

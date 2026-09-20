@@ -388,8 +388,8 @@ export function Dashboard() {
           </div>
           <p className="text-xs text-muted-foreground">
             {stateCfg.label}
-            {security.data && security.data.bySeverity.critical + security.data.bySeverity.high > 0
-              ? ` · ${t("dashboard:detectionsCount", { count: security.data.bySeverity.critical + security.data.bySeverity.high })}`
+            {cd.causes.length > 0
+              ? ` · ${t("dashboard:causesCount", { count: cd.causes.length })}`
               : ""}
           </p>
         </div>
@@ -628,40 +628,107 @@ export function Dashboard() {
           subtitle={t("dashboard:conductDialogSubtitle")}
           onClose={() => setOpenDialog(null)}
         >
-          {!security.data ? (
+          {!conduct.data ? (
             <LoadingState />
-          ) : security.data.alerts.length === 0 ? (
-            <p className="text-sm text-muted-foreground">{t("dashboard:noDetections")}</p>
+          ) : conduct.data.causes.length === 0 ? (
+            <p className="text-sm text-muted-foreground">{t("dashboard:conductNoCauses")}</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="text-left text-muted-foreground">
-                    <th className="pb-2">{t("dashboard:colDate")}</th>
-                    <th className="pb-2">{t("dashboard:colUser")}</th>
-                    <th className="pb-2">{t("dashboard:colSeverity")}</th>
-                    <th className="pb-2">{t("dashboard:colPolicy")}</th>
-                    <th className="pb-2">{t("dashboard:colEvidence")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {security.data.alerts.map((al, i) => (
-                    <tr key={`${al.policyId}-${i}`} className="data-row border-t border-border">
-                      <td className="whitespace-nowrap py-1.5">
-                        {new Date(al.timestamp).toLocaleString(locale)}
-                      </td>
-                      <td className="py-1.5 font-mono">{al.subjectRef}</td>
-                      <td className="py-1.5">
-                        <SeverityBadge severity={al.severity} />
-                      </td>
-                      <td className="py-1.5">
-                        <span className="font-mono text-[10px]">{al.policyId}</span> {al.policyName}
-                      </td>
-                      <td className="py-1.5 font-mono text-[11px]">{al.evidenceMasked}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="flex flex-col gap-4">
+              {conduct.data.causes.map((cause, i) => (
+                <div key={i} className="rounded-md border border-border p-3">
+                  <div className="mb-2 flex items-center gap-2">
+                    <SeverityBadge severity={cause.severity === "critical" ? "critical" : "high"} />
+                    <p className="text-sm">{cause.summary}</p>
+                  </div>
+
+                  {cause.kind === "token-volume-anomaly" && cause.tokenAnomaly && (
+                    <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:grid-cols-4">
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                          {t("dashboard:causeZScore")}
+                        </dt>
+                        <dd className="tnum font-semibold">{cause.tokenAnomaly.zScore}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                          {t("dashboard:causeBucketTokens")}
+                        </dt>
+                        <dd className="tnum font-semibold">
+                          {formatTokens(cause.tokenAnomaly.bucketTokens)}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                          {t("dashboard:causeExpectedMean")}
+                        </dt>
+                        <dd className="tnum font-semibold">
+                          {formatTokens(cause.tokenAnomaly.meanTokens)} ±{" "}
+                          {formatTokens(cause.tokenAnomaly.stdDevTokens)}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                          {t("dashboard:causeWindow")}
+                        </dt>
+                        <dd className="font-semibold">
+                          {t("dashboard:causeWindowValue", {
+                            count: cause.tokenAnomaly.windowBuckets,
+                          })}
+                        </dd>
+                      </div>
+                      <div className="col-span-2 sm:col-span-4">
+                        <dt className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                          {t("dashboard:causeBucketTime")}
+                        </dt>
+                        <dd className="font-semibold">
+                          {new Date(cause.tokenAnomaly.bucketTimestamp).toLocaleString(locale)}
+                        </dd>
+                      </div>
+                    </dl>
+                  )}
+
+                  {cause.kind === "security-detection" && (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-xs">
+                        <thead>
+                          <tr className="text-left text-muted-foreground">
+                            <th className="pb-2">{t("dashboard:colDate")}</th>
+                            <th className="pb-2">{t("dashboard:colUser")}</th>
+                            <th className="pb-2">{t("dashboard:colSeverity")}</th>
+                            <th className="pb-2">{t("dashboard:colPolicy")}</th>
+                            <th className="pb-2">{t("dashboard:colEvidence")}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(security.data?.alerts ?? [])
+                            .filter((al) => al.severity === "critical" || al.severity === "high")
+                            .map((al, j) => (
+                              <tr
+                                key={`${al.policyId}-${j}`}
+                                className="data-row border-t border-border"
+                              >
+                                <td className="whitespace-nowrap py-1.5">
+                                  {new Date(al.timestamp).toLocaleString(locale)}
+                                </td>
+                                <td className="py-1.5 font-mono">{al.subjectRef}</td>
+                                <td className="py-1.5">
+                                  <SeverityBadge severity={al.severity} />
+                                </td>
+                                <td className="py-1.5">
+                                  <span className="font-mono text-[10px]">{al.policyId}</span>{" "}
+                                  {al.policyName}
+                                </td>
+                                <td className="py-1.5 font-mono text-[11px]">
+                                  {al.evidenceMasked}
+                                </td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           )}
           <Link to="/security" className="mt-3 inline-block text-xs text-primary hover:underline">
