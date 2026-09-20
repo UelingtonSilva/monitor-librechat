@@ -1,3 +1,9 @@
+// Must run before `./env.js` is imported below: that module reads process.env at import
+// time. Loading a .env file is a local-dev convenience only — Docker/Cloud Run set real
+// env vars directly, and dotenv never overwrites a variable that's already set, so this is
+// a no-op there (and a no-op with no .env file present, which the production image never
+// has — only the compiled dist/ output is copied into it, never the source .env).
+import "dotenv/config";
 import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import Fastify from "fastify";

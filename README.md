@@ -73,13 +73,15 @@ MongoDB (production, staging, or a local copy with synthetic data).
 
 ```bash
 npm install
+npm run build -w packages/shared  # both apps import this workspace package by its build output
 
 # monitor-api (port 4000 by default)
 cp apps/monitor-api/.env.template apps/monitor-api/.env
 npm run hash-password -w apps/monitor-api -- "choose-a-password"  # paste the output into ADMIN_PASSWORD_HASH in .env
 npm run dev -w apps/monitor-api
 
-# monitor-portal (port 5173 by default)
+# monitor-portal (port 5173 by default) — needs no .env of its own; dev proxies API calls
+# to port 4000 (see apps/monitor-portal/vite.config.ts)
 npm run dev -w apps/monitor-portal
 ```
 

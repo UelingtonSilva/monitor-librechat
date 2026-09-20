@@ -11,13 +11,14 @@ without one, falling back to clearly-marked synthetic data.
 
 ```bash
 npm install
+npm run build -w packages/shared  # both apps import this workspace package by its build output
 
 # API (port 4000 by default)
 cp apps/monitor-api/.env.template apps/monitor-api/.env
 npm run hash-password -w apps/monitor-api -- "choose-a-password"  # paste into ADMIN_PASSWORD_HASH in .env
 npm run dev -w apps/monitor-api
 
-# Portal (port 5173 by default)
+# Portal (port 5173 by default) — needs no .env of its own; dev proxies API calls to port 4000
 npm run dev -w apps/monitor-portal
 ```
 
