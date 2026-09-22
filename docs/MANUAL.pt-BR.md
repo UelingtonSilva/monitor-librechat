@@ -67,6 +67,12 @@ registrado na trilha de auditoria (seção 13)._
 > novas tentativas por alguns minutos, mesmo que a senha esteja certa. Isso é
 > proposital — espere um pouco e tente de novo.
 
+> **Não existe usuário ou senha padrão.** O Monitor não vem com nenhuma credencial
+> embutida, de propósito — quem instala precisa criar uma antes do primeiro acesso. Se
+> você ainda não tem usuário/senha, isso é um passo de instalação, não algo faltando
+> nesta tela: veja [Configuração](TECHNICAL_MANUAL.pt-BR.md#4-configuração) no manual
+> técnico para como o administrador gera essa credencial.
+
 ## 3. Navegação geral
 
 Depois de entrar, três elementos aparecem em toda tela do painel:
@@ -99,13 +105,13 @@ hora, o radar por papel e a tabela de números por papel._
 
 ### Os cards
 
-| Card                                       | O que significa                                                                                                                                                            |
-| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Usuários**                               | Total de usuários habilitados e quantos estiveram ativos no período. Clicável — abre a lista completa de usuários.                                                         |
-| **Tokens de entrada / saída / total**      | Volume de tokens consumidos (o que foi enviado ao modelo e o que ele respondeu).                                                                                           |
-| **Custo (USD)**                            | Custo estimado do período, sempre em dólares. Ver a seção Custos para como esse número é calculado.                                                                        |
-| **Arquivos gerados / Prompts / Conversas** | Volume de uso bruto no período.                                                                                                                                            |
-| **Conduta**                                | Indicador estatístico (não é uma regra fixa) que compara o consumo mais recente contra a média histórica. Clicável — abre o detalhe das detecções de segurança do período. |
+| Card                                       | O que significa                                                                                                                                                                                                                                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Usuários**                               | Total de usuários habilitados e quantos estiveram ativos no período. Clicável — abre a lista completa de usuários.                                                                                                                              |
+| **Tokens de entrada / saída / total**      | Volume de tokens consumidos (o que foi enviado ao modelo e o que ele respondeu).                                                                                                                                                                |
+| **Custo (USD)**                            | Custo estimado do período, sempre em dólares. Ver a seção Custos para como esse número é calculado.                                                                                                                                             |
+| **Arquivos gerados / Prompts / Conversas** | Volume de uso bruto no período.                                                                                                                                                                                                                 |
+| **Conduta**                                | Indicador estatístico (não é uma regra fixa) que compara o consumo mais recente contra a média histórica. Clicável — abre todas as causas por trás do estado atual (anomalia de volume de tokens, detecção de segurança em aberto, ou as duas). |
 
 ### Cards clicáveis
 

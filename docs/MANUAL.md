@@ -66,6 +66,12 @@ recorded in the audit trail (section 13)._
 > for a few minutes, even with the correct password. This is intentional — wait a bit and
 > try again.
 
+> **There is no default username or password.** The Monitor ships with no built-in
+> credential on purpose — whoever installs it has to create one before the first sign-in.
+> If you don't have a user/password yet, that's an installation step, not something
+> missing from this screen: see [Configuration](TECHNICAL_MANUAL.md#4-configuration) in
+> the technical manual for how the administrator generates it.
+
 ## 3. General navigation
 
 After signing in, three elements appear on every screen:
@@ -98,13 +104,13 @@ per-role radar, and the numbers-by-role table._
 
 ### The cards
 
-| Card                                          | What it means                                                                                                                                                               |
-| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Users**                                     | Total enabled users and how many were active in the period. Clickable — opens the full user list.                                                                           |
-| **Input / output / total tokens**             | Token volume consumed (what was sent to the model and what it answered).                                                                                                    |
-| **Cost (USD)**                                | Estimated cost for the period, always in dollars. See the Costs section for how this figure is computed.                                                                    |
-| **Files generated / Prompts / Conversations** | Raw usage volume for the period.                                                                                                                                            |
-| **Conduct**                                   | A statistical indicator (not a fixed rule) comparing the most recent consumption against the historical mean. Clickable — opens the period's security detections in detail. |
+| Card                                          | What it means                                                                                                                                                                                                                                 |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Users**                                     | Total enabled users and how many were active in the period. Clickable — opens the full user list.                                                                                                                                             |
+| **Input / output / total tokens**             | Token volume consumed (what was sent to the model and what it answered).                                                                                                                                                                      |
+| **Cost (USD)**                                | Estimated cost for the period, always in dollars. See the Costs section for how this figure is computed.                                                                                                                                      |
+| **Files generated / Prompts / Conversations** | Raw usage volume for the period.                                                                                                                                                                                                              |
+| **Conduct**                                   | A statistical indicator (not a fixed rule) comparing the most recent consumption against the historical mean. Clickable — opens every cause behind the current state in detail (a token-volume anomaly, an open security detection, or both). |
 
 ### Clickable cards
 
