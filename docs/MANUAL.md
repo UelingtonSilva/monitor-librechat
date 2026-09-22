@@ -138,6 +138,60 @@ users, so a "small role" isn't confused with "a role that uses little"). The tab
 to it shows the same numbers as a list, flagging roles that had no usage in the period or
 accessed models outside their configured allowlist.
 
+### Understanding Conduct
+
+**Purpose.** Conduct is an early-warning signal, not a rule engine. Instead of checking
+usage against a fixed threshold someone had to configure by hand, it learns what "normal"
+looks like for this specific deployment from its own recent history, and flags whenever
+the latest hour departs from that — the kind of thing no deterministic policy would catch
+(for example, a burst of consumption at 3 a.m. breaks no rule but is still worth a second
+look). Like everything else in the Monitor, it's purely observational: seeing it turn red
+never blocks anything, on its own or through any other part of the system.
+
+**How the number is calculated.** The card shows a `z` value — a
+[z-score](https://en.wikipedia.org/wiki/Standard_score), which measures how many standard
+deviations the most recent bucket sits away from the recent average:
+
+1. The same hourly buckets behind the token chart above feed this calculation (input +
+   output tokens, buckets excluding the daily credit top-up — see [Costs](#6-costs) for
+   why that distinction matters).
+2. The Monitor takes the **20 buckets right before the current one** and computes their
+   mean and standard deviation — this is "recent normal" for this instance, recalculated
+   every time, never hand-configured.
+3. `z = (latest bucket − mean) ÷ standard deviation`. A `z` near 0 means the latest hour
+   looks like every other recent hour; a large `z` (positive or negative) means it
+   doesn't.
+4. With fewer than 5 prior buckets of history — a freshly connected instance, or a very
+   short custom period — there isn't enough data yet to compute a band at all, and the
+   card shows `z = —` until it accumulates more.
+
+| `abs(z)`          | State       | What it means                                                           |
+| ----------------- | ----------- | ----------------------------------------------------------------------- |
+| below 2           | 🟢 Normal   | The latest hour is within the range recent history would predict.       |
+| 2 to just under 3 | 🟡 Warning  | Noticeably outside the recent pattern — worth a look, not yet alarming. |
+| 3 or above        | 🔴 Critical | Well outside anything the last 20 buckets would predict.                |
+
+**A second, independent signal shares the same light.** Regardless of the z-score, an
+open **critical**-severity detection on the [Security & Risk](#9-security--risk) screen
+forces the state to Critical, and an open **high**-severity one forces at least Warning —
+because a statistical baseline should never be the only thing standing between a leaked
+credential and someone noticing. The two signals are tracked separately and **both** can
+be active at the same time; the traffic light always reflects whichever one is worse.
+
+**Reading the detail.** Clicking the card opens every cause currently contributing to the
+state — not just one of them, even when both are active at once:
+
+- For a **token-volume anomaly**, the detail shows the exact `z`, the token count in that
+  bucket, the expected mean ± standard deviation it was compared against, how many prior
+  buckets fed that comparison, and the bucket's timestamp — enough to go find that hour in
+  the chart above and judge for yourself whether it's a real concern or an expected spike
+  (a product launch announced that day, for instance).
+- For a **security detection**, the detail shows the same table as Security & Risk,
+  filtered to the critical/high-severity rows that are actually driving Conduct — medium,
+  low, and info-severity detections show up on that screen but never move this light.
+- If the state is Normal, the dialog says so plainly: consumption is inside the expected
+  band and no security detection is open, so nothing is currently contributing.
+
 ## 5. Adoption
 
 How many people actually use the tool, and how often — separate from usage volume (which

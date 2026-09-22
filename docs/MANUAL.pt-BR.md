@@ -139,6 +139,65 @@ pelo total de usuários, para não confundir "papel pequeno" com "papel que usa 
 A tabela ao lado traz os mesmos números em formato de lista, com avisos quando um papel
 não usou a ferramenta no período ou acessou modelos fora da allowlist configurada.
 
+### Entendendo a Conduta
+
+**Objetivo.** Conduta é um sinal de alerta precoce, não um motor de regras. Em vez de
+comparar o uso contra um limite fixo que alguém precisaria configurar manualmente, ela
+aprende sozinha o que é "normal" para esta instância específica a partir do próprio
+histórico recente, e sinaliza quando a última hora foge disso — exatamente o tipo de
+coisa que nenhuma política determinística pegaria (por exemplo, um pico de consumo às 3h
+da manhã não viola regra nenhuma, mas ainda merece uma segunda olhada). Como todo o
+resto do Monitor, é estritamente observacional: ver o sinal ficar vermelho nunca bloqueia
+nada, nem por si só nem por qualquer outra parte do sistema.
+
+**Como o número é calculado.** O card mostra um valor `z` — um
+[z-score](https://pt.wikipedia.org/wiki/Escore_padronizado), que mede quantos
+desvios-padrão o bucket mais recente está distante da média recente:
+
+1. Os mesmos buckets por hora que alimentam o gráfico de tokens acima entram nesse
+   cálculo (tokens de entrada + saída, excluindo a recarga diária de crédito — veja
+   [Custos](#6-custos) para entender por que essa distinção importa).
+2. O Monitor pega os **20 buckets imediatamente anteriores** ao atual e calcula a média e
+   o desvio-padrão deles — isso é o "normal recente" desta instância, recalculado toda
+   vez, nunca configurado manualmente.
+3. `z = (bucket mais recente − média) ÷ desvio-padrão`. Um `z` perto de 0 significa que a
+   última hora se parece com qualquer outra hora recente; um `z` grande (positivo ou
+   negativo) significa que não se parece.
+4. Com menos de 5 buckets anteriores de histórico — uma instância recém-conectada, ou um
+   período customizado muito curto — ainda não há dado suficiente para calcular a faixa,
+   e o card mostra `z = —` até acumular mais.
+
+| `abs(z)`         | Estado     | O que significa                                                          |
+| ---------------- | ---------- | ------------------------------------------------------------------------ |
+| abaixo de 2      | 🟢 Normal  | A última hora está dentro do que o histórico recente previria.           |
+| de 2 até quase 3 | 🟡 Atenção | Visivelmente fora do padrão recente — vale olhar, ainda não é alarmante. |
+| 3 ou mais        | 🔴 Crítico | Bem fora de qualquer coisa que os últimos 20 buckets previssem.          |
+
+**Um segundo sinal, independente, compartilha o mesmo semáforo.** Independente do
+z-score, uma detecção de severidade **crítica** em aberto na tela de
+[Segurança & Risco](#9-segurança--risco) força o estado para Crítico, e uma de
+severidade **alta** força pelo menos Atenção — porque uma linha de base estatística nunca
+deveria ser a única coisa entre uma credencial vazada e alguém perceber. Os dois sinais
+são rastreados separadamente e **os dois** podem estar ativos ao mesmo tempo; o
+semáforo sempre reflete o pior dos dois.
+
+**Lendo o detalhe.** Clicar no card abre todas as causas que estão contribuindo para o
+estado atual — não só uma delas, mesmo quando as duas estão ativas ao mesmo tempo:
+
+- Para uma **anomalia de volume de tokens**, o detalhe mostra o `z` exato, a quantidade
+  de tokens naquele bucket, a média ± desvio-padrão esperados contra os quais ele foi
+  comparado, quantos buckets anteriores alimentaram essa comparação, e o horário do
+  bucket — o suficiente para ir direto àquela hora no gráfico acima e julgar por conta
+  própria se é uma preocupação real ou um pico esperado (um lançamento de produto
+  anunciado naquele dia, por exemplo).
+- Para uma **detecção de segurança**, o detalhe mostra a mesma tabela de Segurança &
+  Risco, filtrada às linhas de severidade crítica/alta que de fato estão movendo a
+  Conduta — detecções de severidade média, baixa e informativa aparecem naquela tela mas
+  nunca mexem nesse semáforo.
+- Se o estado é Normal, o diálogo diz isso claramente: o consumo está dentro da faixa
+  esperada e não há nenhuma detecção de segurança em aberto, então nada está
+  contribuindo no momento.
+
 ## 5. Adoção
 
 Quantas pessoas de fato usam a ferramenta, e com que frequência — separado do volume de
